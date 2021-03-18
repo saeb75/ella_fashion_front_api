@@ -1,0 +1,31 @@
+.explore_section {
+  background-color: $darkBlue;
+  margin-top: 5rem;
+  @extend .flex-center;
+  @extend .flex-col;
+
+  &_title {
+    color: $white;
+    @extend .flex-center;
+    font-size: $large + 0.5;
+    font-weight: $fontNormal;
+    padding: 1rem;
+  }
+  &_info {
+    color: $white;
+    @extend .flex-center;
+    padding: 1rem;
+  }
+  button {
+    margin: 1rem;
+    width: 300px;
+    padding: 20px 25px;
+    font-size: $large;
+    font-weight: $fontNormal;
+    text-transform: uppercase;
+    &:hover {
+      background-color: white;
+      color: $darkBlue;
+    }
+  }
+}

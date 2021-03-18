@@ -1,0 +1,55 @@
+.sign_up_form {
+  &_header {
+    &_links {
+      display: flex;
+      a {
+        color: $grey !important;
+        font-size: $minSize;
+        font-weight: 500;
+        margin-right: 5px;
+        text-transform: capitalize;
+      }
+      p {
+        margin-left: 5px;
+        font-size: $minSize;
+        font-weight: 500;
+        transition: 0.4s all;
+        text-transform: capitalize;
+        &:hover {
+          color: $grey !important;
+        }
+      }
+    }
+    &_title {
+      margin-top: 30px;
+      font-family: $dmFont;
+      font-weight: 400;
+      font-size: $large + 0.2;
+    }
+  }
+  &_section {
+    &_title {
+      font-size: $minSize;
+    }
+    label {
+      display: block;
+      text-transform: capitalize;
+      font-size: $minSize;
+      font-weight: 500;
+    }
+    input {
+      width: 30%;
+      margin-bottom: 10px;
+      display: block;
+    }
+    button {
+      font-size: $minSize;
+      font-weight: 700;
+    }
+  }
+  .error_msg {
+    margin-bottom: 15px;
+    font-size: $minSize;
+    color: $red;
+  }
+}

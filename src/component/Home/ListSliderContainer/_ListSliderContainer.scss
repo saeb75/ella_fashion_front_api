@@ -1,0 +1,45 @@
+.list_slider {
+  .list_slider_header {
+    @extend .flex-col;
+    @extend .flex-center;
+    .list_slider_title {
+      font-family: $dmFont;
+      font-weight: 400;
+      font-size: $large + 1;
+      text-transform: capitalize;
+      @include mediaQuery($xl) {
+        font-size: 1.8rem;
+      }
+      @include mediaQuery($md) {
+        font-size: 1.6rem;
+      }
+      @include mediaQuery($sm) {
+        font-size: 1.5rem;
+      }
+    }
+    .slider_view_button {
+      text-transform: uppercase;
+      font-weight: $fontMedium;
+      color: $red;
+      cursor: pointer;
+    }
+  }
+  .swiper-pagination {
+    visibility: hidden;
+    @include mediaQuery($xl) {
+      width: 80% !important;
+      position: absolute;
+      padding: 2px;
+      visibility: visible;
+      background-color: rgba($color: #d3b7b7b0, $alpha: 0.6);
+      border-radius: 10px;
+      transform: translateX(17%);
+      bottom: -30px !important;
+    }
+  }
+  .swiper-pagination-bullet {
+    width: 12px !important;
+
+    height: 12px !important;
+  }
+}

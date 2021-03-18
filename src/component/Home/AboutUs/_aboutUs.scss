@@ -1,0 +1,47 @@
+.about_us {
+  &_title {
+    @extend .new_collection_title;
+    font-size: 2rem;
+    @include mediaQuery($xl) {
+      font-size: 1.8rem;
+    }
+    @include mediaQuery($md) {
+      font-size: 1.6rem;
+    }
+    @include mediaQuery($sm) {
+      font-size: 1.5rem;
+    }
+  }
+  &_link {
+    text-transform: uppercase;
+    font-weight: $fontMedium;
+    font-size: $minSize;
+    color: $red;
+    @include mediaQuery($xl) {
+      font-size: 0.8rem;
+    }
+    @include mediaQuery($md) {
+      font-size: 0.75rem;
+    }
+    @include mediaQuery($sm) {
+      font-size: 0.7rem;
+    }
+  }
+  &_desc {
+    @extend .new_collection_desc;
+    width: 100%;
+    @extend .flex-center;
+    justify-self: center;
+    padding: 15px 10px !important;
+
+    @include mediaQuery($xl) {
+      font-size: 0.8rem;
+    }
+    @include mediaQuery($md) {
+      font-size: 0.8rem;
+    }
+    @include mediaQuery($sm) {
+      font-size: 0.8rem;
+    }
+  }
+}

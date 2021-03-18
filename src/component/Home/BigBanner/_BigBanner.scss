@@ -1,0 +1,48 @@
+.big_banner_container {
+  &_image {
+    position: relative;
+    button {
+      text-transform: uppercase;
+      position: absolute;
+      z-index: 99999;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      font-size: $meduim;
+      font-weight: $fontMedium;
+      opacity: 0;
+      transition: 0.4s all;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include mediaQuery($xl) {
+        font-size: 0.8rem;
+      }
+      @include mediaQuery($md) {
+        font-size: 0.8rem;
+      }
+      @include mediaQuery($sm) {
+        font-size: 0.65rem;
+        padding: 10px;
+        width: 80%;
+      }
+    }
+
+    &:hover {
+      button {
+        opacity: 1;
+        @include mediaQuery($xl) {
+          font-size: 0.8rem;
+        }
+        @include mediaQuery($md) {
+          font-size: 0.8rem;
+        }
+        @include mediaQuery($sm) {
+          font-size: 0.65rem;
+          padding: 10px;
+          width: 80%;
+        }
+      }
+    }
+  }
+}

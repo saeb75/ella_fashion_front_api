@@ -1,0 +1,20 @@
+.jump_to_list {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &_title {
+    font-weight: $fontlight;
+    color: $fontBlack;
+    font-size: $minSize + 0.05;
+    text-transform: uppercase;
+  }
+  &_item {
+    font-weight: $fontlight;
+    color: $newGrey;
+    font-size: $minSize;
+    cursor: pointer;
+    line-height: 22px;
+  }
+}

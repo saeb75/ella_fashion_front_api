@@ -1,0 +1,36 @@
+.product_details_acoordion {
+  .filter_section {
+    border-top: 1px solid $lightGrey;
+    padding: 20px 5px;
+
+    &:last-child {
+      border-bottom: 1px solid $lightGrey;
+    }
+    > li {
+      display: flex;
+      align-items: center;
+      font-weight: $fontMedium + 100;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 24px;
+
+      color: $fontheighBlack;
+      cursor: pointer;
+      span {
+        font-size: 1.2rem;
+        width: 20px;
+        font-weight: 500;
+        color: $fontBlack;
+      }
+    }
+    .shipping_title {
+      font-weight: 700;
+      font-size: $minSize;
+      margin-bottom: 10px;
+    }
+    .shipping_body {
+      font-size: $minSize;
+      margin-bottom: 15px;
+    }
+  }
+}

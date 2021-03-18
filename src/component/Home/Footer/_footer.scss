@@ -1,0 +1,42 @@
+.footer {
+  &_list_title {
+    font-size: 15px;
+    font-weight: $fontBold;
+    color: $fontBlack;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    line-height: 24px;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    li {
+      font-size: 0.8125rem;
+      text-transform: capitalize;
+      margin-bottom: 15px;
+    }
+  }
+  &_icons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li {
+      margin-right: 20px;
+      list-style: none;
+    }
+  }
+  .footer_list_payment {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      list-style: none;
+      margin: 10px;
+    }
+    img {
+      width: 40px;
+    }
+  }
+}

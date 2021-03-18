@@ -1,0 +1,29 @@
+.contact_section {
+  &_col {
+    &:first-child {
+      background-color: #e0e2ea;
+    }
+    background-color: #efe8e0;
+  }
+  &_card {
+    @extend .flex-center;
+    @extend .flex-col;
+    &_title {
+      font-family: $dmFont;
+      font-weight: $fontMedium;
+      text-transform: capitalize;
+      font-size: $large;
+      padding: 15px;
+    }
+    &_description {
+      font-size: $minSize;
+      text-align: center;
+      width: 380px;
+      padding: 15px;
+    }
+    &_button {
+      text-transform: uppercase;
+      color: $red;
+    }
+  }
+}

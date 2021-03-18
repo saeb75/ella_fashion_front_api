@@ -1,0 +1,101 @@
+.category_sort_by {
+  .filterToggle {
+    display: none;
+    @include mediaQuery($xl) {
+      display: block;
+      font-size: 1.2rem;
+    }
+  }
+  &_title {
+    display: flex;
+    justify-content: flex-start;
+    span {
+      font-weight: $fontlight;
+      font-size: $minSize;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: $fontheighBlack;
+      &:hover {
+        color: #999999;
+      }
+      &:first-child {
+        color: #999999;
+      }
+    }
+  }
+  &_container {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    @include mediaQuery($xl) {
+      flex-direction: row-reverse;
+      background-color: $lightGrey;
+      padding: 0 10px;
+    }
+    .grid_view {
+      display: flex;
+      p {
+        text-transform: capitalize;
+        font-weight: $fontlight;
+        font-size: $minSize;
+        line-height: 24px;
+        text-transform: capitalize;
+        color: $newGrey;
+        @include mediaQuery($xl) {
+          display: none !important;
+        }
+      }
+      svg {
+        &:first-child {
+          path {
+            stroke: $fontBlack !important;
+          }
+        }
+        text-transform: capitalize;
+        font-weight: $fontlight;
+        font-size: 1.2rem;
+        margin-left: 8px;
+        line-height: 24px;
+        text-transform: capitalize;
+        path {
+          stroke: $newGrey !important;
+        }
+      }
+    }
+  }
+  &_select {
+    display: flex;
+    align-items: center;
+    div {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      &:first-child {
+        select {
+          width: 80px;
+        }
+      }
+      select {
+        width: 150px;
+      }
+    }
+    p {
+      text-transform: capitalize;
+      font-weight: $fontNormal;
+      font-size: $minSize;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: $newGrey;
+      margin-right: 10px;
+      @include mediaQuery($xl) {
+        display: none !important;
+      }
+    }
+  }
+  .pageItems {
+    @include mediaQuery($xl) {
+      display: none !important;
+    }
+  }
+}

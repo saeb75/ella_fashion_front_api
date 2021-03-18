@@ -1,0 +1,30 @@
+.modal {
+  z-index: 99999;
+  transform: translateY(20%);
+  display: flex;
+}
+
+.ella_modal {
+  &_header {
+    p {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+  &_body {
+    padding: 10px;
+    p {
+      text-transform: capitalize;
+      font-size: $minSize;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: $minSize;
+      background-color: $darkBlue;
+      color: white;
+    }
+  }
+}

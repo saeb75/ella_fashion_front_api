@@ -1,0 +1,112 @@
+.filter_products {
+  &_close {
+    display: none;
+    @include mediaQuery($xl) {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      font-size: 1.2rem;
+    }
+  }
+  .filter_slider {
+    width: 100%;
+    > li {
+      list-style: none;
+      font-size: $minSize;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  }
+
+  .swiper-button-prev {
+    left: 165px !important;
+    margin-top: 60px !important;
+    top: 100% !important;
+    @include mediaQuery($xl) {
+      left: 0px !important;
+      margin-top: 60px !important;
+      top: 100% !important;
+      margin-right: 300px;
+    }
+  }
+  .swiper-button-next {
+    right: 165px !important;
+    margin-top: 60px !important;
+    top: 100% !important;
+    @include mediaQuery($xl) {
+      right: 0px !important;
+      margin-top: 60px !important;
+      top: 100% !important;
+    }
+  }
+  &_list {
+    list-style: none;
+    .filter_section {
+      margin-bottom: 10px;
+      > li {
+        display: flex;
+        align-items: center;
+        font-weight: $fontMedium + 100;
+        text-transform: uppercase;
+        font-size: 14px;
+        line-height: 24px;
+        color: $fontheighBlack;
+        cursor: pointer;
+        span {
+          font-size: 1.2rem;
+          width: 20px;
+          font-weight: 500;
+          color: $fontBlack;
+        }
+      }
+    }
+  }
+}
+.CategoryFilter {
+  li {
+    text-transform: uppercase;
+    font-size: $minSize;
+  }
+}
+
+.colorSection {
+  display: flex;
+  li {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+}
+
+.sizeSection {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 50%;
+    margin-bottom: 5px;
+    span {
+      text-transform: uppercase;
+      margin-left: 5px;
+      font-size: $minSize;
+      font-weight: 600;
+    }
+  }
+}
+
+.priceSection {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 100%;
+    margin-bottom: 5px;
+    span {
+      text-transform: uppercase;
+      margin-left: 5px;
+      font-size: $minSize;
+    }
+  }
+}

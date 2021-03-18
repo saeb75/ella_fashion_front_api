@@ -1,0 +1,123 @@
+.banner {
+  .banner-in {
+    border: 5px solid $grey;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    width: 600px;
+    @include mediaQuery($xl) {
+      height: 200px;
+      width: 400px;
+    }
+    @include mediaQuery($lg) {
+      height: 150px;
+      width: 300px;
+    }
+    @include mediaQuery($md) {
+      height: 100px;
+      width: 200px;
+    }
+    @include mediaQuery($sm) {
+      height: 75px;
+      width: 200px;
+    }
+  }
+  padding: 15px;
+  position: absolute;
+  top: 55%;
+  left: 80%;
+  transform: translateX(-50%);
+  @include mediaQuery($xl) {
+    top: 40%;
+    left: 50%;
+  }
+  @include mediaQuery($lg) {
+    top: 50%;
+    padding: 10px;
+  }
+  @include mediaQuery($sm) {
+    top: 35%;
+    padding: 5px;
+    display: none;
+  }
+  background-color: white;
+  .banner_category {
+    font-weight: $fontBold;
+    text-transform: uppercase;
+    font-size: $minSize;
+    color: $fontBlack;
+    @include mediaQuery($lg) {
+      font-size: 0.7rem;
+    }
+  }
+  &_title {
+    @extend .new_collection_title;
+    font-size: 3.2rem;
+    @include mediaQuery($xl) {
+      font-size: 1.8rem;
+    }
+    @include mediaQuery($lg) {
+      font-size: 1.2rem;
+    }
+    @include mediaQuery($sm) {
+      margin: 2px 0px;
+      font-size: 0.7rem;
+      padding: 2px !important;
+      margin: 2px !important;
+      background-color: red;
+    }
+  }
+  &_desc {
+    margin: 15px 0px;
+    @extend .new_collection_desc;
+    width: 100%;
+    @extend .flex-center;
+    justify-self: center;
+    @include mediaQuery($xl) {
+      margin: 5px 0px;
+    }
+    @include mediaQuery($lg) {
+      margin: 2px 0px;
+      font-size: 0.7rem;
+    }
+    @include mediaQuery($sm) {
+      padding: 0 !important;
+      height: 0;
+      background-color: red;
+      margin: 2px 0px;
+      font-size: 0.3rem;
+    }
+  }
+  button {
+    margin: 25px 0px;
+    background-color: $darkBlue;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: $fontMedium;
+    font-size: $minSize;
+    width: 300px;
+    @include mediaQuery($xl) {
+      width: 250px;
+      margin: 10px 0px;
+    }
+    @include mediaQuery($lg) {
+      width: 220px;
+      margin: 5px 0px;
+      font-size: 0.7rem;
+      padding: 5px;
+    }
+    @include mediaQuery($sm) {
+      width: 100px;
+      margin: 2px 0px;
+      font-size: 0.3rem;
+      padding: 2px;
+    }
+    &:hover {
+      background-color: white;
+      color: $darkBlue;
+    }
+  }
+}

@@ -1,0 +1,157 @@
+.list_slider {
+  .swiper-button-next {
+    position: absolute;
+    top: 50% !important;
+    right: 0px !important;
+    background: #8c8c8c;
+    margin-top: 0 !important;
+    margin-right: -155px;
+    display: flex;
+    justify-content: center;
+    height: 40px !important;
+    align-self: center;
+    align-items: center;
+    width: 70px !important;
+    transform: translateY(-50%) !important;
+    color: black !important;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    box-shadow: -2px 2px 4px 2px rgba(0, 0, 0, 0.4);
+    background-image: url(../../../assents/arrow.png) !important;
+    @include mediaQuery(1600px) {
+      margin-right: -75px;
+    }
+    @include mediaQuery($xxl) {
+      margin-right: 0px;
+    }
+  }
+  .swiper-button-next::after {
+    content: " \2192" !important;
+    font-weight: 900;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  .swiper-button-prev::after {
+    content: " \2190" !important;
+    margin-bottom: 5px;
+    font-weight: 900;
+    font-size: 30px;
+    color: white;
+  }
+  /* 2190 */
+  .Cswiper {
+    position: relative;
+    width: 100%;
+  }
+
+  .swiper-button-prev {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    margin-top: 0;
+    margin-left: -155px;
+    background: #8c8c8c;
+    height: 40px !important;
+    transform: translateY(-50%) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px !important;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    @include mediaQuery(1600px) {
+      margin-left: -75px;
+    }
+    @include mediaQuery($xxl) {
+      margin-left: 0px;
+    }
+  }
+  .swiper-container {
+    position: unset !important;
+    width: 100%;
+
+    @include mediaQuery($xxl) {
+      width: 100%;
+    }
+  }
+}
+.slideContainer {
+  overflow: hidden;
+  .list_slider_image {
+    position: relative;
+    button {
+      position: absolute;
+      bottom: 10%;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+      transform: translateX(-50%);
+      left: 50%;
+      width: 220px;
+      transition: 0.4s all;
+      text-transform: uppercase;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .imageHover {
+      position: absolute;
+      z-index: 99;
+      right: 0;
+      opacity: 0;
+      transition: 0.4s all;
+    }
+    &:hover {
+      .imageHover {
+        opacity: 1;
+      }
+    }
+  }
+  .list_slider_Product_color {
+    img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+    }
+    img.active {
+      border: 1px solid black;
+    }
+  }
+  &:hover {
+    button {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.new_discount_Container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 99;
+  top: 10px;
+  left: 10px;
+  span {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 25px;
+    color: white;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: $minSize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+  }
+  .new {
+    background-color: $darkBlue;
+  }
+  .discount {
+    background-color: $red;
+  }
+}

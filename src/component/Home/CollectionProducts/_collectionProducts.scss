@@ -1,0 +1,30 @@
+.collection_products {
+  .list_slider {
+    display: flex;
+    align-items: center;
+    .list_slider_title {
+      width: 200px;
+      @include mediaQuery($xl) {
+        width: 100%;
+      }
+    }
+  }
+  .swiper-pagination {
+    visibility: hidden;
+    /*   @include mediaQuery($xl) {
+      width: 20% !important;
+      position: absolute;
+      padding: 2px;
+      visibility: visible;
+      background-color: $grey;
+      border-radius: 10px;
+      transform: translateX(200%);
+      bottom: -30px !important;
+    } */
+  }
+  .swiper-pagination-bullet {
+    width: 12px !important;
+
+    height: 12px !important;
+  }
+}

@@ -1,0 +1,47 @@
+.small_banner {
+  .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    @include mediaQuery($xl) {
+      margin-bottom: 2rem;
+    }
+  }
+  &_title {
+    position: absolute;
+    font-weight: $fontBold;
+    color: $white;
+    font-size: $large;
+  }
+}
+.imageScale {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s all;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    opacity: 0;
+    transition: 0.4s all;
+  }
+  img {
+    transition: 0.4s all;
+  }
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+    img {
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,0 +1,124 @@
+.custumer_review {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  &_title {
+    font-family: $dmFont;
+    font-size: 2rem;
+    font-weight: 400;
+    @include mediaQuery($xl) {
+      font-size: 1.8rem;
+    }
+    @include mediaQuery($md) {
+      font-size: 1.6rem;
+    }
+    @include mediaQuery($sm) {
+      font-size: 1.5rem;
+    }
+  }
+  &_container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    @include mediaQuery($xl) {
+      width: 65%;
+    }
+    @include mediaQuery($md) {
+      width: 80%;
+    }
+    @include mediaQuery($sm) {
+      width: 80%;
+    }
+  }
+  &_body {
+    padding: 30px;
+    border: 1px solid $lightGrey;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px 5px rgba(138, 10, 10, 0.5);
+      @include mediaQuery($xl) {
+        width: 40px;
+        height: 40px;
+      }
+      @include mediaQuery($md) {
+        width: 40px;
+        height: 40px;
+      }
+      @include mediaQuery($sm) {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .review {
+      padding: 20px 8px;
+      font-size: $minSize;
+      @include mediaQuery($xl) {
+        font-size: $minSize -0.1;
+      }
+      @include mediaQuery($md) {
+        font-size: $minSize -0.1;
+      }
+      @include mediaQuery($sm) {
+        font-size: $minSize - 0.2;
+      }
+    }
+  }
+  &_button {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    span {
+      font-size: 1.3rem;
+      margin-right: 5px;
+    }
+  }
+  .add_review {
+    width: 25%;
+    @include mediaQuery($xl) {
+      width: 35%;
+    }
+    @include mediaQuery($md) {
+      width: 55%;
+    }
+    @include mediaQuery($sm) {
+      width: 65%;
+    }
+    label {
+      font-size: $minSize;
+      font-weight: 600;
+      display: block;
+      text-transform: capitalize;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 12px;
+    }
+    textarea {
+      width: 100%;
+      border: 1px solid $grey;
+      padding: 10px;
+      font-size: 12px;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      background-color: $darkBlue;
+      color: white;
+      margin-top: 1rem;
+      font-size: $minSize;
+      font-weight: 700;
+    }
+  }
+}

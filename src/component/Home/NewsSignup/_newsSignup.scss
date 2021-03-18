@@ -1,0 +1,54 @@
+.news_signup {
+  background-color: #eaeaea;
+  &_title {
+    @extend .new_collection_title;
+    font-size: 2rem;
+  }
+  &_desc {
+    @extend .new_collection_desc;
+    width: 100%;
+    @extend .flex-center;
+
+    span {
+      width: 40%;
+      a {
+        color: black;
+        text-decoration: underline;
+      }
+    }
+  }
+  &_input {
+    @extend .flex-center;
+    > div {
+      @extend .flex-center;
+      width: 100%;
+
+      input {
+        width: 40%;
+        margin-right: 10px;
+        &::placeholder {
+          color: $darkBlue;
+          /* text-transform: uppercase; */
+          font-weight: $fontMedium;
+          font-size: $minSize;
+        }
+        border: none;
+        padding: 16.5px;
+        &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+    }
+    button {
+      background-color: $darkBlue;
+      color: white;
+      text-transform: uppercase;
+      font-weight: $fontMedium;
+      font-size: $minSize;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
