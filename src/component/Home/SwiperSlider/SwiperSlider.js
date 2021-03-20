@@ -97,9 +97,9 @@ const SwiperSlider = () => {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
       >
-        {data.map((item) => {
+        {data.map((item, index) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <SlideContainer>
                 <ImageContainer>
                   <Img src={item.img} style={{ width: "100%" }} />
@@ -109,8 +109,13 @@ const SwiperSlider = () => {
                   <Brand>{item.brand}</Brand>
                   <ProductName>{item.name}</ProductName>
                   <Stars>
-                    {[1, 2, 3, 4, 5].map((item) => (
-                      <img src={star} width="20" style={{ margin: 2 }} />
+                    {[1, 2, 3, 4, 5].map((item, index) => (
+                      <img
+                        src={star}
+                        width="20"
+                        key={index}
+                        style={{ margin: 2 }}
+                      />
                     ))}
                   </Stars>
                   <Price>${item.price}</Price>

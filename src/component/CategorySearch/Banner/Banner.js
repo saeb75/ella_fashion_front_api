@@ -7,7 +7,7 @@ const Banner = () => {
     <Container fluid className="category_search_banner">
       <Container style={{ maxWidth: 1400 }}>
         <img src={img} style={{ width: "100%" }} />
-        <InfoBanner />
+        {/*     <InfoBanner /> */}
       </Container>
     </Container>
   );

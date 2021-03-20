@@ -18,8 +18,12 @@ const JumpTo = () => {
       <div className="Jump_to ">
         <ul className="jump_to_list">
           <li className="jump_to_list_title">Jump To</li> :
-          {data.map((item) => {
-            return <li className="jump_to_list_item line">{item}</li>;
+          {data.map((item, index) => {
+            return (
+              <li key={index} className="jump_to_list_item line">
+                {item}
+              </li>
+            );
           })}
         </ul>
       </div>

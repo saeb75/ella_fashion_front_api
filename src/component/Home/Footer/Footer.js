@@ -25,13 +25,17 @@ const Footer = () => {
   return (
     <Container className="footer py-5">
       <Row>
-        {data.map((item) => {
+        {data.map((item, index) => {
           return (
-            <Col md="3" lg="3">
+            <Col md="3" lg="3" key={index}>
               <p className="footer_list_title">{item.title}</p>
               <ul>
-                {item?.items.map((_item) => {
-                  return <li className="line">{_item}</li>;
+                {item?.items.map((_item, _index) => {
+                  return (
+                    <li className="line" key={_index}>
+                      {_item}
+                    </li>
+                  );
                 })}
               </ul>
             </Col>
@@ -40,15 +44,15 @@ const Footer = () => {
         <Col md="3" lg="3">
           <p className="footer_list_title">keep in touch</p>
           <div className="footer_icons mb-5">
-            {icons.map((item) => {
-              return <li>{item.icon}</li>;
+            {icons.map((item, index) => {
+              return <li key={index}>{item.icon}</li>;
             })}
           </div>
           <p className="footer_list_title">payment accept</p>
           <div className="footer_list_payment">
-            {cards.map((item) => {
+            {cards.map((item, index) => {
               return (
-                <li>
+                <li key={index}>
                   <img src={item} />
                 </li>
               );

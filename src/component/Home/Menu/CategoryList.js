@@ -17,9 +17,10 @@ const CategoryList = ({ items, categoryImg, category }) => {
               <div className="category_container">
                 <ul className="category_list">
                   {items.length > 0 &&
-                    items.map((item) => {
+                    items.map((item, index) => {
                       return (
                         <Navlist
+                          key={index}
                           to={`/category/${item.slug}`}
                           image={item.categoryImg.image}
                         >

@@ -43,7 +43,7 @@ const MainSlider = () => {
         {slider.mainSlider &&
           slider.mainSlider.slides.map((item) => {
             return (
-              <SwiperSlide key={item.img} className="slide_container">
+              <SwiperSlide key={item.image.image} className="slide_container">
                 <SlideContainer>
                   <img
                     src={item.image.image}

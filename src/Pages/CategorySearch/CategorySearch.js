@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { fade } from "../../component/animations/animations";
 import Menu from "../../component/Home/Menu/Menu";
@@ -10,8 +10,17 @@ import FilterAndProducts from "../../component/CategorySearch/FilterAndProducts/
 import Footer from "../../component/Home/Footer/Footer";
 import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { getProducDetails, getProducts } from "../../Actions/productAction";
+import { useDispatch } from "react-redux";
 const CategorySearch = () => {
   const [open, setOpen] = useState(false);
+  const param = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducDetails(param.slug));
+  }, []);
   return (
     <>
       <Container fluid className="mainHeader p-0 m-0">

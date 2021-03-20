@@ -85,9 +85,9 @@ const ProductSlider = ({ data, image }) => {
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}
         >
-          {image.map((item) => {
+          {image.map((item, index) => {
             return (
-              <SwiperSlide key={item} className="slide_container">
+              <SwiperSlide key={index} className="slide_container">
                 <SlideContainer>
                   <ReactImageMagnify
                     {...{

@@ -45,7 +45,7 @@ const Menu = () => {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
-  console.log(category.categories);
+
   return (
     <>
       <Container
@@ -104,7 +104,7 @@ const Menu = () => {
               })}
  */}
               {category.categories.length > 0 &&
-                category.categories.map((item) => {
+                category.categories.map((item, index) => {
                   return (
                     <NavItemComponent
                       slug={item.slug}

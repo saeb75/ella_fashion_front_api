@@ -22,9 +22,14 @@ const ContactSection = () => {
   return (
     <Container fluid className="contact_section" style={{ overflow: "hidden" }}>
       <Row>
-        {data.map((item) => {
+        {data.map((item, index) => {
           return (
-            <Col lg="6" md="12" className="contact_section_col py-5">
+            <Col
+              key={index}
+              lg="6"
+              md="12"
+              className="contact_section_col py-5"
+            >
               <div className="contact_section_card">
                 <img src={item.icon} />
                 <p className="contact_section_card_title  text-center">

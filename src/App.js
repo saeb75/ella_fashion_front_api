@@ -10,8 +10,14 @@ import SingleProduct from "./Pages/SingleProduct/SingleProduct";
 import { useEffect } from "react";
 import SignUp from "./Pages/SignUp/SignUp";
 import ActiveAccount from "./Pages/ActiveAccount/ActiveAccount";
+import { useDispatch } from "react-redux";
+import { getBanners } from "./Actions/bannerAction";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBanners());
+  }, []);
   let location = useLocation();
   return (
     <>
@@ -20,7 +26,7 @@ function App() {
         <AnimatePresence>
           <Switch location={location} key={location.pathname}>
             <Route exact path="/" component={Home} />
-            <Route path="/category" component={CategorySearch} />
+            <Route path="/category/:slug" component={CategorySearch} />
             <Route path="/product" component={SingleProduct} />
             <Route path="/register" component={SignUp} />
             <Route path="/active/account/:token" component={ActiveAccount} />

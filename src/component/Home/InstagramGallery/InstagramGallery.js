@@ -11,9 +11,9 @@ const InstagramGallery = () => {
       <div className="insta_gallery_link text-center">FOLLOW US @FASHION</div>
       <Gallery>
         <Row className="mt-5">
-          {data.map((item) => {
+          {data.map((item, index) => {
             return (
-              <Col lg="3" md="3" className="mb-4">
+              <Col lg="3" md="3" className="mb-4" key={index}>
                 <Card>
                   <Item
                     original={item.img}

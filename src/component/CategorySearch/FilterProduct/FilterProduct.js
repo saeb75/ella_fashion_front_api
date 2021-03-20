@@ -5,7 +5,85 @@ import ListSlider from "../../Home/ListSlider/ListSlider";
 import { filterData } from "../../../Data/filterData";
 import { data } from "../../../Data/SliderData";
 import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import useUnique from "../../../helper/useUnique";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { getProducts } from "../../../Actions/productAction";
+const queryString = require("query-string");
 const FilterProduct = ({ SetOpen }) => {
+  const location = useLocation();
+  let Url = queryString.parse(location.search);
+
+  const [color, setColor] = useState(Url.color ? Url.color : "");
+  const [size, setSize] = useState(Url.size ? Url.size : []);
+  const product = useSelector((state) => state.product);
+  const { slug } = useParams();
+  let colors = useUnique(product, "color");
+  let sizes = useUnique(product, "size");
+  let brand = [];
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const handleColor = (item) => {
+    setColor(item.enName);
+    dispatch(getProducts(slug, item.enName, size));
+    let filterObj = {};
+    filterObj.color = item.enName;
+    if (size) {
+      filterObj.size = size;
+    }
+    const stringified = queryString.stringify(filterObj);
+    history.push(`${location.pathname}?${stringified}`);
+  };
+  const handleSize = (e, item) => {
+    if (e.target.checked) {
+      setSize([...size, item]);
+      dispatch(getProducts(slug, color, [...size, item]));
+      let filterObj = {};
+      filterObj.size = [...size, item];
+      if (color) {
+        filterObj.color = color;
+      }
+      const stringified = queryString.stringify(filterObj);
+      console.log(stringified);
+      history.push(`${location.pathname}?${stringified}`);
+    } else {
+      let newList = size.filter((_item) => _item != item);
+
+      setSize(newList);
+      let filterObj = {};
+      filterObj.size = [...newList];
+      if (color) {
+        filterObj.color = color;
+      }
+      dispatch(getProducts(slug, color, [...newList]));
+      const stringified = queryString.stringify(filterObj);
+      console.log(stringified);
+      history.push(`${location.pathname}?${stringified}`);
+    }
+  };
+
+  useEffect(() => {
+    let check = typeof Url.size;
+
+    if (check == "string") {
+      dispatch(
+        getProducts(
+          slug,
+          Url.color ? Url.color : "",
+          Url.size ? [Url.size] : ""
+        )
+      );
+    } else {
+      dispatch(
+        getProducts(slug, Url.color ? Url.color : "", Url.size ? Url.size : "")
+      );
+    }
+
+    setColor(Url.color ? Url.color : "");
+    setSize(Url.size ? Url.size : []);
+  }, []);
+
   return (
     <div className="filter_products">
       <div
@@ -19,16 +97,20 @@ const FilterProduct = ({ SetOpen }) => {
           <CategoryFilter />
         </FilterSection>
         <FilterSection title="color">
-          <ColorFilter />
+          <ColorFilter
+            colors={colors}
+            color={color}
+            handleColor={handleColor}
+          />
         </FilterSection>
         <FilterSection title="size">
-          <SizeFilter />
+          <SizeFilter sizes={sizes} handleSize={handleSize} size={size} />
         </FilterSection>
         <FilterSection title="price">
           <PriceFilter />
         </FilterSection>
         <FilterSection title="brand">
-          <BrandFilter />
+          <BrandFilter brand={brand} />
         </FilterSection>
         <FilterSection title="product type">
           <ProductTypeFilter />
@@ -79,24 +161,45 @@ const CategoryFilter = () => {
     </div>
   );
 };
-const ColorFilter = () => {
-  let colorData = ["black", "beige", "pink"];
+const ColorFilter = ({ colors, handleColor, color }) => {
   return (
     <div className="colorSection py-2 pt-2 pb-5">
-      {colorData.map((item) => {
-        return <li style={{ backgroundColor: item }}></li>;
+      {colors.map((item, index) => {
+        return (
+          <li
+            key={index}
+            onClick={() => handleColor(item)}
+            style={{ backgroundColor: ` #${item.code}` }}
+            className={`${color === item.enName ? "active" : ""}`}
+          ></li>
+        );
       })}
     </div>
   );
 };
-const SizeFilter = () => {
-  let sizeData = ["xs", "s", "m", "x", "xl", "2x"];
+const SizeFilter = ({ sizes, handleSize, size }) => {
+  const handleChecked = (item) => {
+    if (size.includes(item)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <div className="sizeSection py-2 pt-2 pb-5">
-      {sizeData.map((item) => {
+      {sizes.map((item, index) => {
         return (
-          <li>
-            <input type="checkbox" />
+          <li key={index}>
+            {handleChecked(item) ? (
+              <input
+                type="checkbox"
+                onChange={(e) => handleSize(e, item)}
+                checked
+              />
+            ) : (
+              <input type="checkbox" onChange={(e) => handleSize(e, item)} />
+            )}
+
             <span>{item}</span>
           </li>
         );
@@ -114,9 +217,9 @@ const PriceFilter = () => {
   ];
   return (
     <div className="priceSection py-2 pt-2 pb-5">
-      {sizeData.map((item) => {
+      {sizeData.map((item, index) => {
         return (
-          <li>
+          <li key={index}>
             <input type="checkbox" />
             <span>{item}</span>
           </li>
@@ -125,13 +228,12 @@ const PriceFilter = () => {
     </div>
   );
 };
-const BrandFilter = () => {
-  let sizeData = ["gucci", "zara", "anna", "donatello", "benjamin"];
+const BrandFilter = ({ brand }) => {
   return (
     <div className="priceSection py-2 pt-2 pb-5">
-      {sizeData.map((item) => {
+      {brand.map((item, index) => {
         return (
-          <li>
+          <li key={index}>
             <input type="checkbox" />
             <span>{item}</span>
           </li>
@@ -150,9 +252,9 @@ const ProductTypeFilter = () => {
   ];
   return (
     <div className="priceSection py-2 pt-2 pb-5">
-      {sizeData.map((item) => {
+      {sizeData.map((item, index) => {
         return (
-          <li>
+          <li key={index}>
             <input type="checkbox" />
             <span>{item}</span>
           </li>

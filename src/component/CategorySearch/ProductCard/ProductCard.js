@@ -1,22 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "../../../Global";
 import star from "../../../assents/star.png";
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
-const ListSliderCard = ({ item }) => {
-  const [state, setState] = useState(item.img);
+import moment from "moment";
+const ProductCard = ({ item }) => {
+  const [state, setState] = useState();
+  const [colorList, setColorList] = useState([]);
+  let listColor = [];
+
+  useEffect(() => {
+    if (item.productDetails) {
+      item.productDetails.map((_item) => {
+        listColor.push(_item.color);
+      });
+      setColorList(listColor);
+      setState(listColor[0].code);
+    }
+  }, [item]);
+  console.log();
+
   return (
     <div className="list_slider_card">
       <div className="list_slider_image">
-        <img src={state} style={{ width: "100%", height: "100%" }} />
         <img
-          src={item.images[1]}
+          src={item.productImg[0].img.image}
+          style={{ width: "100%", height: "100%" }}
+        />
+        <img
+          src={item.productImg[1].img.image}
           className="imageHover"
           style={{ width: "100%", height: "100%" }}
         />
         <div className="new_discount_Container">
-          {item.new && <span className="new">New</span>}
-          {item.percent && <span className="discount">-{item.percent}%</span>}
+          {moment.duration().asDays(item.createdAt) < 20 && (
+            <span className="new">New</span>
+          )}
+          {/*   {item.percent && <span className="discount">-{item.percent}%</span>}*/}
         </div>
 
         <button>Add To Cart</button>
@@ -27,14 +47,13 @@ const ListSliderCard = ({ item }) => {
           <AiOutlineHeart style={{ cursor: "pointer" }} />
         </Brand>
         <div className="list_slider_Product_color">
-          {item.images.map((_item, index) => {
+          {colorList.map((_item, index) => {
             return (
-              <img
-                key={index}
-                src={_item}
-                className={state == _item && "active"}
-                onClick={() => setState(_item)}
-              />
+              <div
+                onClick={() => setState(_item.code)}
+                className={`${state === _item.code ? "active" : ""}`}
+                style={{ backgroundColor: `#${_item.code}` }}
+              ></div>
             );
           })}
         </div>
@@ -50,10 +69,11 @@ const ListSliderCard = ({ item }) => {
   );
 };
 
-export default ListSliderCard;
+export default ProductCard;
 const Img = styled.img`
   width: 100%;
 `;
+
 const SlideInfo = styled.div`
   flex: 1;
   display: flex;
