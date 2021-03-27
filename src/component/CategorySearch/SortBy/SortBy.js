@@ -25,7 +25,11 @@ const SortBy = ({ setOpen }) => {
           <div className="category_sort_by_select">
             <div className="pageItems">
               <p>items per page </p>
-              <Form.Control as="select" size="sm">
+              <Form.Control
+                as="select"
+                size="sm"
+                onChange={() => console.log("object")}
+              >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -34,10 +38,14 @@ const SortBy = ({ setOpen }) => {
             </div>
             <div>
               <p>sort by </p>
-              <Form.Control as="select" size="sm">
+              <Form.Control
+                as="select"
+                size="sm"
+                onChange={() => console.log("object")}
+              >
                 <option>shoes</option>
                 <option>blues</option>
-                <option>t-shirt</option> <option>Large select</option>{" "}
+                <option>t-shirt</option> <option>Large select</option>
               </Form.Control>
             </div>
           </div>

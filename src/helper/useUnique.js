@@ -2,36 +2,51 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 const useUnique = (product, key) => {
-  const [uniqueList, setUniqueList] = useState([]);
-  let list = [];
-  let Unique;
+  const [colors, setColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [brands, setBrands] = useState([]);
+
+  let listColor = [];
+  let listSize = [];
+  let listBrand = [];
+  let UniqueColor;
+  let UniqueSize;
+  let UniqueBrand;
   useEffect(() => {
     product.productsDetails.map((productDet) => {
-      if (key === "color") {
-        productDet.productDetails.map((item) => {
-          list.push(item.color);
-        });
-      } else if (key === "size") {
-        productDet.productDetails.map((item) => {
-          list.push(item.size);
-        });
-      } else if (key === "brand") {
-        productDet.productDetails.map((item) => {
-          list.push(item.brand);
-        });
-      }
+      productDet.productDetails.map((item) => {
+        listColor.push(item.color);
+      });
     });
-    if (key === "color") {
-      Unique = [
-        ...new Map(list.map((item) => [item["prName"], item])).values(),
-      ];
-    } else {
-      Unique = [...new Set(list)];
-    }
 
-    setUniqueList(Unique);
+    UniqueColor = [
+      ...new Map(listColor.map((item) => [item["prName"], item])).values(),
+    ];
+
+    setColors(UniqueColor);
   }, [product]);
-  return uniqueList;
+  useEffect(() => {
+    product.productsDetails.map((productDet) => {
+      productDet.productDetails.map((item) => {
+        listSize.push(item.size);
+      });
+    });
+
+    UniqueSize = [...new Set(listSize)];
+
+    setSizes(UniqueSize);
+  }, [product]);
+
+  useEffect(() => {
+    product.productsDetails.map((productDet) => {
+      listBrand.push(productDet.brand);
+    });
+
+    UniqueBrand = [...new Set(listBrand)];
+
+    setBrands(UniqueBrand);
+  }, [product]);
+  return { colors, sizes, brands };
 };
 
 export default useUnique;

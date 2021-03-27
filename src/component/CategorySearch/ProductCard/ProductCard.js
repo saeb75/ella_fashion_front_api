@@ -4,6 +4,7 @@ import { theme } from "../../../Global";
 import star from "../../../assents/star.png";
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 const ProductCard = ({ item }) => {
   const [state, setState] = useState();
   const [colorList, setColorList] = useState([]);
@@ -39,7 +40,11 @@ const ProductCard = ({ item }) => {
           {/*   {item.percent && <span className="discount">-{item.percent}%</span>}*/}
         </div>
 
-        <button>Add To Cart</button>
+        {/*        <button>Add To Cart</button> */}
+        <NavLink
+          to={`/product/${item.slug}`}
+          className="product_cart_overley_link"
+        ></NavLink>
       </div>
       <SlideInfo>
         <Brand>
@@ -57,7 +62,9 @@ const ProductCard = ({ item }) => {
             );
           })}
         </div>
-        <ProductName>{item.name}</ProductName>
+        <ProductName>
+          <NavLink to={`/product/${item.slug}`}> {item.name}</NavLink>
+        </ProductName>
         <Price>${item.price}</Price>
         <Stars>
           {[1, 2, 3, 4, 5].map((item, index) => (

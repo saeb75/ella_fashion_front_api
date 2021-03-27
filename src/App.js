@@ -10,14 +10,22 @@ import SingleProduct from "./Pages/SingleProduct/SingleProduct";
 import { useEffect } from "react";
 import SignUp from "./Pages/SignUp/SignUp";
 import ActiveAccount from "./Pages/ActiveAccount/ActiveAccount";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getBanners } from "./Actions/bannerAction";
-
+import SignIn from "./Pages/SignIn/SignIn";
+import { loginControl } from "./Actions/authAction";
+import Cart from "./Pages/Cart/Cart";
 function App() {
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getBanners());
   }, []);
+  useEffect(() => {
+    if (!auth.authenticated) {
+      dispatch(loginControl());
+    }
+  }, [auth.authenticated]);
   let location = useLocation();
   return (
     <>
@@ -26,9 +34,11 @@ function App() {
         <AnimatePresence>
           <Switch location={location} key={location.pathname}>
             <Route exact path="/" component={Home} />
+            <Route exact path="/cart" component={Cart} />
             <Route path="/category/:slug" component={CategorySearch} />
-            <Route path="/product" component={SingleProduct} />
+            <Route path="/product/:slug" component={SingleProduct} />
             <Route path="/register" component={SignUp} />
+            <Route path="/login" component={SignIn} />
             <Route path="/active/account/:token" component={ActiveAccount} />
           </Switch>
         </AnimatePresence>

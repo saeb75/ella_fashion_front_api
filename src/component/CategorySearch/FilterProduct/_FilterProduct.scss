@@ -1,4 +1,10 @@
 .filter_products {
+  .clear_filter {
+    button {
+      font-size: $minSize;
+      font-weight: 700;
+    }
+  }
   &_close {
     display: none;
     @include mediaQuery($xl) {

@@ -144,10 +144,12 @@ const Menu = () => {
                 <AiOutlineHeart />
               </div>
               <div className="menu__option__login">
-                <IoPersonCircleOutline
-                  className="ml-2 mr-2"
-                  style={{ fontSize: "25px" }}
-                />
+                <NavLink to="/register">
+                  <IoPersonCircleOutline
+                    className="ml-2 mr-2"
+                    style={{ fontSize: "25px" }}
+                  />
+                </NavLink>
               </div>
               <div
                 className="menu__option__cart"
@@ -190,7 +192,7 @@ const DropDownItem = ({ title, items, key, slug }) => {
       >
         <li className="nav__item__drop__item  ">
           {slug ? (
-            <NavLink to={`category/${slug}`} className="w-100  h-100">
+            <NavLink to={`/category/${slug}`} className="w-100  h-100">
               {title}
             </NavLink>
           ) : (

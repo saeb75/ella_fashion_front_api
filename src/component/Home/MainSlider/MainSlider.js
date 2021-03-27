@@ -22,8 +22,9 @@ const MainSlider = () => {
   }, []);
   return (
     <div className="Cswiper mainSlider">
-      <Swiper
-        /*   breakpoints={{
+      {slider.mainSlider && (
+        <Swiper
+          /*   breakpoints={{
           // when window width is >= 640px
           640: {
             slidesPerView: 1,
@@ -34,14 +35,13 @@ const MainSlider = () => {
           },
         }} */
 
-        navigation
-        pagination={{ clickable: true }}
-        /*  pagination={{ clickable: true }} */
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
-      >
-        {slider.mainSlider &&
-          slider.mainSlider.slides.map((item) => {
+          navigation
+          pagination={{ clickable: true }}
+          /*  pagination={{ clickable: true }} */
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+        >
+          {slider.mainSlider.slides.map((item) => {
             return (
               <SwiperSlide key={item.image.image} className="slide_container">
                 <SlideContainer>
@@ -54,7 +54,8 @@ const MainSlider = () => {
               </SwiperSlide>
             );
           })}
-      </Swiper>
+        </Swiper>
+      )}
     </div>
   );
 };

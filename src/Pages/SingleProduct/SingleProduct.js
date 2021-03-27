@@ -14,7 +14,6 @@ import ContactSection from "../../component/Home/ContactSection/ContactSection";
 import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import Footer from "../../component/Home/Footer/Footer";
 const SingleProduct = () => {
-  console.log(productInfo);
   return (
     <div>
       <Header />

@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { getProducDetails, getProducts } from "../../Actions/productAction";
 import { useDispatch } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
 const CategorySearch = () => {
   const [open, setOpen] = useState(false);
   const param = useParams();
@@ -20,6 +21,7 @@ const CategorySearch = () => {
 
   useEffect(() => {
     dispatch(getProducDetails(param.slug));
+    scroll.scrollToTop();
   }, []);
   return (
     <>

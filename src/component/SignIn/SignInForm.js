@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory } from "react-router-dom";
 import EllaModal from "../Modal/EllaModal";
 import ErrorMessage from "../../helper/ErrorMassage";
-import { registerUser } from "../../Actions/authAction";
+import { loginUser } from "../../Actions/authAction";
 import { useEffect } from "react";
 import { OFF_MODAL } from "../../Actions/actionType";
 
-const SignUpForm = () => {
+const SignInForm = () => {
   const [show, setShow] = useState(false);
   const auth = useSelector((state) => state.auth);
   const { register, handleSubmit, errors, watch } = useForm();
   const history = useHistory();
   const dispatch = useDispatch();
   const onSubmit = (data) => {
-    dispatch(registerUser(data));
+    dispatch(loginUser(data));
   };
 
   const handModalClose = () => {
@@ -38,32 +38,16 @@ const SignUpForm = () => {
     <Container className="sign_up_form py-5">
       <div className="sign_up_form_header pb-3 pt-1">
         <div className="sign_up_form_header_links">
-          <NavLink to="/">home</NavLink> / <p>Create an Account</p>
+          <NavLink to="/">home</NavLink> / <p>login at account</p>
         </div>
-        <p className="sign_up_form_header_title">CREATE AN ACCOUNT</p>
+        <p className="sign_up_form_header_title">login at account</p>
       </div>
       <hr />
       <div className="sign_up_form_section">
         <p className="sign_up_form_section_title py-3">
-          Sign up for a free account at Ella Boutique.
+          Sign In for at Ella Boutique.
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label>First name</label>
-          <input
-            type="text"
-            name="firstName"
-            ref={register({ required: true })}
-            disabled={auth.loading}
-          />
-          {ErrorMessage({ error: errors.firstName })}
-          <label>last name</label>
-          <input
-            type="text"
-            name="lastName"
-            ref={register({ required: true })}
-            disabled={auth.loading}
-          />
-          {ErrorMessage({ error: errors.lastName })}
           <label> email</label>
           <input
             type="text"
@@ -80,12 +64,10 @@ const SignUpForm = () => {
             disabled={auth.loading}
           />
           {ErrorMessage({ error: errors.password })}
-          <button type="submit">
-            {auth.loading ? "loading..." : "create an account"}
-          </button>
-          <NavLink to="/login">I have an account.login</NavLink>
+          <button type="submit">{auth.loading ? "loading..." : "login"}</button>
+          <NavLink to="/register">create an account.</NavLink>
         </form>
-        <EllaModal
+        {/*   <EllaModal
           size="sm"
           show={show}
           title="active account"
@@ -95,10 +77,10 @@ const SignUpForm = () => {
           <div className="flex-center mt-5">
             <button onClick={handModalClose}>Ok</button>
           </div>
-        </EllaModal>
+        </EllaModal> */}
       </div>
     </Container>
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { fade } from "../../component/animations/animations";
 import BigBanner from "../../component/Home/BigBanner/BigBanner";
@@ -18,10 +18,14 @@ import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import SmallBanner from "../../component/Home/SmallBanner/SmallBanner";
 import { about } from "../../Data/ProductInfo";
 import "./style.css";
+import { animateScroll as scroll } from "react-scroll";
 import { motion } from "framer-motion";
 import { homeBanner } from "../../Data/newCollection";
 import { homeBigBanner } from "../../Data/BigBanner";
 const Home = () => {
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
   return (
     <>
       <Container fluid className="mainHeader p-0 m-0">
