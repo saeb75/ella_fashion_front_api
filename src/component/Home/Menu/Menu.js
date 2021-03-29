@@ -151,14 +151,16 @@ const Menu = () => {
                   />
                 </NavLink>
               </div>
-              <div
-                className="menu__option__cart"
-                style={{ cursor: "pointer" }}
-                onClick={() => setCart(true)}
-              >
-                <AiOutlineShopping />
-                <span>0</span>
-              </div>
+              <NavLink to="/cart">
+                <div
+                  className="menu__option__cart"
+                  style={{ cursor: "pointer" }}
+                  /* onClick={() => setCart(true)} */
+                >
+                  <AiOutlineShopping />
+                  <span>0</span>
+                </div>
+              </NavLink>
             </div>
           </div>
         </Container>

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { authReducer } from "./authReducer";
 import { bannerReducer } from "./bannerReducer";
+import { cartReducer } from "./cartReducer";
 import { categoryReducer } from "./categoryReducer";
 import { productReducer } from "./productReducer";
 import { sliderReducer } from "./sliderReducer";
@@ -11,4 +12,5 @@ export let rootReducer = combineReducers({
   slider: sliderReducer,
   banner: bannerReducer,
   product: productReducer,
+  cart: cartReducer,
 });

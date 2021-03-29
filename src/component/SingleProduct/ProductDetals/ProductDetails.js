@@ -4,12 +4,19 @@ import star from "../../../assents/star.png";
 import fire from "../../../assents/fire.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import AccordionMenu from "../AccordionMenu/AccordionMenu";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Actions/cartAction";
 const ProductDetails = ({ data, changeData, image, product }) => {
   let [sizes, setSizes] = useState("");
-  let [productsSize, setProductSize] = useState("");
+
   let [colros, setColros] = useState("");
-  let [productColor, setProductColor] = useState("");
+
   let [availableSize, setAvailableSize] = useState("");
+  let [cartItems, setCartItems] = useState({
+    size: "",
+    color: "",
+  });
+  const dispatch = useDispatch();
   let { name, price, description, productDetails } = product;
   let colorList = [];
   let sizeList = [];
@@ -28,7 +35,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
       sizeList = [...new Set(sizeList)];
       setSizes(sizeList);
       setColros(colorList);
-      setProductColor(colorList[0]);
+      setCartItems({ ...cartItems, color: colorList[0] });
       availableSizeList = productDetails.map(
         (_item) => _item.color.enName == colorList[0].enName && _item.size
       );
@@ -38,7 +45,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
 
   const handleChange = (item, filter) => {
     availableSizeList = [];
-    setProductColor(item);
+    setCartItems({ ...cartItems, color: item });
     availableSizeList = productDetails.map(
       (_item) => _item.color.enName == item.enName && _item.size
     );
@@ -52,6 +59,12 @@ const ProductDetails = ({ data, changeData, image, product }) => {
       return false;
     }
   };
+  let addProductToCart = () => {
+    if (cartItems.size && cartItems.color) {
+      dispatch(addToCart(product, cartItems.size, cartItems.color));
+    }
+  };
+
   return (
     <div className="product_details p-4">
       <div className="product_details_link">
@@ -91,7 +104,9 @@ const ProductDetails = ({ data, changeData, image, product }) => {
       <div className="product_details_color  my-5">
         <section className="product_details_color_title">
           <p>color :</p>
-          <p>{productColor ? productColor.enName : "please choose a color"} </p>
+          <p>
+            {cartItems.color ? cartItems.color.enName : "please choose a color"}{" "}
+          </p>
         </section>
         <section className="product_details_color_box ">
           {colros.length > 0 &&
@@ -99,7 +114,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
               return (
                 <div
                   className={`color_box ${
-                    productColor === item ? "active" : ""
+                    cartItems.color === item ? "active" : ""
                   }`}
                   style={{ backgroundColor: `#${item.code}` }}
                   onClick={() => handleChange(item, "color")}
@@ -113,7 +128,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
       <div className="product_details_size my-3 ">
         <section className="product_details_color_title my-1">
           <p>size :</p>
-          <p>{productsSize ? productsSize : "please choose a size"}</p>
+          <p>{cartItems.size ? cartItems.size : "please choose a size"}</p>
         </section>
         <section>
           {sizes.length > 0 &&
@@ -124,7 +139,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
                     <div
                       className={`size_box   `}
                       key={index}
-                      onClick={() => setProductSize(item)}
+                      onClick={() => setCartItems({ ...cartItems, size: item })}
                     >
                       {item}
                     </div>
@@ -132,7 +147,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
                     <div
                       className={`size_box  unAvailable `}
                       key={index}
-                      onClick={() => setProductSize(item)}
+                      onClick={() => setCartItems({ ...cartItems, size: item })}
                     >
                       {item}
                     </div>
@@ -144,7 +159,20 @@ const ProductDetails = ({ data, changeData, image, product }) => {
       </div>
       <div className="product_details_addToCart my-3">
         <input type="number" value="1" />
-        <button className="add_to_cart mx-2">add to cart</button>
+        {cartItems.product || cartItems.color || cartItems.size ? (
+          <button className="add_to_cart mx-2" onClick={addProductToCart}>
+            add to cart
+          </button>
+        ) : (
+          <button
+            className="add_to_cart mx-2"
+            onClick={addProductToCart}
+            disabled={true}
+          >
+            add to cart
+          </button>
+        )}
+
         <button className="like">
           <AiOutlineHeart />
         </button>

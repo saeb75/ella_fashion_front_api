@@ -6,6 +6,9 @@ import img5 from "../../assents/cardImage/18.webp";
 import img2 from "../../assents/cardImage/22.jpg";
 import cart1 from "../../assents/cart1.jpg";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineClose } from "react-icons/ai";
+import { removeFromCart } from "../../Actions/cartAction";
 const CartBody = () => {
   const [countries, setCountries] = useState([{ country: "" }]);
   const [cities, setCities] = useState([]);
@@ -21,7 +24,10 @@ const CartBody = () => {
     let listOfCity = countries.find((_item) => _item.country == item);
     setCities(listOfCity);
   };
-  console.log(cities.cities);
+  const dispatch = useDispatch();
+  const removeItem = (color, size, id) => {
+    dispatch(removeFromCart(color, size, id));
+  };
   return (
     <>
       <Container className="cart_body_container pb-5 mb-5">
@@ -33,7 +39,7 @@ const CartBody = () => {
         </div>
         <Row className="my-4">
           <Col lg="8">
-            <CartTable />
+            <CartTable removeItem={removeItem} />
           </Col>
           <Col lg="4">
             <OrderSummary
@@ -68,7 +74,9 @@ let fetured = {
   stars: 5,
   price: 393.0,
 };
-const CartTable = () => {
+const CartTable = ({ removeItem }) => {
+  const cart = useSelector((state) => state.cart);
+  let { cartItems } = cart;
   return (
     <>
       <div className="cart_table ">
@@ -77,28 +85,51 @@ const CartTable = () => {
           <div className="cart_table_header_price">PRICE</div>
           <div className="cart_table_header_quantity">QUANTITY</div>
           <div className="cart_table_header_total">total</div>
+          <div className="cart_table_header_remove"></div>
         </div>
-        <div className="cart_table_details mt-5">
-          <div className="cart_table_details_products">
-            <div className="cart_table_details_products_image">
-              <img src={img13} />
+        {Object.keys(cartItems).map((key, index) => (
+          <div className="cart_table_details mt-5">
+            <div className="cart_table_details_products">
+              <>
+                <div className="cart_table_details_products_image">
+                  <img src={cartItems[key].productImg[0].img.image} />
+                </div>
+                <div className="cart_table_details_products_info">
+                  <p className="cart_product_name">Ut enim ad minim veniam</p>
+                  <div className="cart_product_size_color">
+                    <p>
+                      {cartItems[key].color.enName} / {cartItems[key].size}
+                    </p>
+                  </div>
+                  <div className="cart_product_brand">
+                    <p>{cartItems[key].brand}</p>
+                  </div>
+                </div>
+              </>
             </div>
-            <div className="cart_table_details_products_info">
-              <p className="cart_product_name">Ut enim ad minim veniam</p>
-              <div className="cart_product_size_color">
-                <p>red / xl</p>
-              </div>
-              <div className="cart_product_brand">
-                <p>burberry</p>
-              </div>
+            <div className="cart_table_details_price">
+              $ {cartItems[key].price}
+            </div>
+            <div className="cart_table_details_quantity">
+              <input type="number" value={cartItems[key].qty} />
+            </div>
+            <div className="cart_table_details_total">
+              $ {cartItems[key].price * cartItems[key].qty}
+            </div>
+            <div
+              className="cart_table_details_remove "
+              onClick={() =>
+                removeItem(
+                  cartItems[key].color,
+                  cartItems[key].size,
+                  cartItems[key]._id
+                )
+              }
+            >
+              <AiOutlineClose />
             </div>
           </div>
-          <div className="cart_table_details_price"> $393.0</div>
-          <div className="cart_table_details_quantity">
-            <input type="number" value="1" />
-          </div>
-          <div className="cart_table_details_total">$393.0</div>
-        </div>
+        ))}
         <hr />
         <p>Secure Shopping Guarantee.</p>
         <img src={cart1} />

@@ -58,6 +58,9 @@
     &_total {
       flex: 1.5;
     }
+    &_remove {
+      flex: 0.5;
+    }
   }
 }
 .cart_table_details {
@@ -126,6 +129,16 @@
     font-weight: bold;
     font-size: $minSize;
     text-transform: uppercase;
+  }
+  &_remove {
+    flex: 0.5;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: $lightGrey;
+    }
   }
 }
 

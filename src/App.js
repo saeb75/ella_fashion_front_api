@@ -15,6 +15,7 @@ import { getBanners } from "./Actions/bannerAction";
 import SignIn from "./Pages/SignIn/SignIn";
 import { loginControl } from "./Actions/authAction";
 import Cart from "./Pages/Cart/Cart";
+import { getCartItems, updatedCart } from "./Actions/cartAction";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -25,6 +26,8 @@ function App() {
     if (!auth.authenticated) {
       dispatch(loginControl());
     }
+    dispatch(updatedCart());
+    dispatch(getCartItems());
   }, [auth.authenticated]);
   let location = useLocation();
   return (
