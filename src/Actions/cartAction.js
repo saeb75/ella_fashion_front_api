@@ -43,12 +43,15 @@ export const addToCart = (product, size, color, newQty = 1) => (dispatch) => {
 
 export const getCartItems = (req, res) => (dispatch) => {
   dispatch({ type: GET_CART_ITEMS_REQUEST });
-  ApiFunc()
-    .get("cart/get")
-    .then((res) =>
-      dispatch({ type: GET_CART_ITEMS_SUCCESS, payload: res.data })
-    )
-    .catch((err) => dispatch({ type: GET_CART_ITEMS_FAILURE }));
+  const { auth } = store.getState();
+  if (auth.authenticated) {
+    ApiFunc()
+      .get("cart/get")
+      .then((res) =>
+        dispatch({ type: GET_CART_ITEMS_SUCCESS, payload: res.data })
+      )
+      .catch((err) => dispatch({ type: GET_CART_ITEMS_FAILURE }));
+  }
 };
 
 export const updatedCart = (req, res) => (dispatch) => {
