@@ -2,8 +2,8 @@
 @import "global";
 @import "mixin";
 @import "../component/Home/Header/header";
-@import "./../component/Home/SmallBanner/smallBanner";
-@import "../component/home/MainSlider/mainSlider";
+@import "smallBanner";
+@import "mainSlider";
 @import "../component/home/ListSliderContainer/ListSliderContainer";
 @import "../component/home/ListSlider/ListSlider";
 @import "../component/home/Menu/menu";
