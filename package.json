@@ -1,6 +1,9 @@
 {
   "name": "ella_fashion",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.14.1",
