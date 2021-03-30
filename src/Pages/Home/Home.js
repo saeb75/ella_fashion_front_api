@@ -22,10 +22,21 @@ import { animateScroll as scroll } from "react-scroll";
 import { motion } from "framer-motion";
 import { homeBanner } from "../../Data/newCollection";
 import { homeBigBanner } from "../../Data/BigBanner";
+import { useDispatch, useSelector } from "react-redux";
+import { getMainSlider } from "../../Actions/sliderAction";
+import { getCategories } from "../../Actions/categoryAction";
+import Loading from "../../component/General/Loading/Loading";
 const Home = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     scroll.scrollToTop();
+    dispatch(getMainSlider());
+    dispatch(getCategories());
   }, []);
+  const category = useSelector((state) => state.category);
+  if (category.loading) {
+    return <Loading />;
+  }
   return (
     <>
       <Container fluid className="mainHeader p-0 m-0">

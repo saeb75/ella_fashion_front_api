@@ -16,9 +16,11 @@ import SignIn from "./Pages/SignIn/SignIn";
 import { loginControl } from "./Actions/authAction";
 import Cart from "./Pages/Cart/Cart";
 import { getCartItems, updatedCart } from "./Actions/cartAction";
+import { getCategories } from "./Actions/categoryAction";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(getBanners());
   }, []);
@@ -30,6 +32,7 @@ function App() {
     dispatch(getCartItems());
   }, [auth.authenticated]);
   let location = useLocation();
+
   return (
     <>
       <ThemeProvider theme={theme}>

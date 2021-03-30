@@ -29,9 +29,7 @@ const Menu = () => {
   const [cart, setCart] = useState(false);
   const dispatch = useDispatch();
   const category = useSelector((state) => state.category);
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
+
   useEffect(() => {
     const onScroll = (e) => {
       setScrollTop(e.target.documentElement.scrollTop);

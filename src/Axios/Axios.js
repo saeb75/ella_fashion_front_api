@@ -5,7 +5,7 @@ import axios from "axios";
 export const ApiFunc = () => {
   let token = localStorage.getItem("token");
   const instance = axios.create({
-    baseURL: "https://saeb-mern-ecommerce-server.herokuapp.com/api/",
+    baseURL: "http://localhost:5000/api/",
     headers: {
       Authorization: token ? `Bearer ${token}` : "",
     },

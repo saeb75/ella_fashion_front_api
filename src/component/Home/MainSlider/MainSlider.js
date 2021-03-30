@@ -17,9 +17,7 @@ const MainSlider = () => {
   const dispatch = useDispatch();
 
   const slider = useSelector((state) => state.slider);
-  useEffect(() => {
-    dispatch(getMainSlider());
-  }, []);
+
   return (
     <div className="Cswiper mainSlider">
       {slider.mainSlider && (
