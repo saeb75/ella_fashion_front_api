@@ -34,7 +34,8 @@ const Home = () => {
     dispatch(getCategories());
   }, []);
   const category = useSelector((state) => state.category);
-  if (category.loading) {
+  const slider = useSelector((state) => state.slider);
+  if (category.loading || slider.loading) {
     return <Loading />;
   }
   return (
