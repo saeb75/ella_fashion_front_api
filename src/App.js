@@ -30,6 +30,7 @@ function App() {
     }
     dispatch(updatedCart());
     dispatch(getCartItems());
+    dispatch(getCategories());
   }, [auth.authenticated]);
   let location = useLocation();
 

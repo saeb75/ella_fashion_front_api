@@ -132,7 +132,7 @@ const CartTable = ({ removeItem }) => {
         ))}
         <hr />
         <p>Secure Shopping Guarantee.</p>
-        <img src={cart1} />
+        <img className="cart_list_image" src={cart1} />
       </div>
     </>
   );

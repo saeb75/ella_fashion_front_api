@@ -58,14 +58,18 @@ const SignInForm = () => {
           {ErrorMessage({ error: errors.email })}
           <label>password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             ref={register({ required: true })}
             disabled={auth.loading}
           />
           {ErrorMessage({ error: errors.password })}
           <button type="submit">{auth.loading ? "loading..." : "login"}</button>
-          <NavLink to="/register">create an account.</NavLink>
+          <div className="sign_up_form_register">
+            <p>
+              create account.<NavLink to="/register">sign up</NavLink>
+            </p>
+          </div>
         </form>
         {/*   <EllaModal
           size="sm"

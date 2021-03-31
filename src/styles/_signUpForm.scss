@@ -1,4 +1,12 @@
 .sign_up_form {
+  form {
+    @include mediaQuery($lg) {
+      width: 70%;
+    }
+    @include mediaQuery($md) {
+      width: 90%;
+    }
+  }
   &_header {
     &_links {
       display: flex;
@@ -8,6 +16,12 @@
         font-weight: 500;
         margin-right: 5px;
         text-transform: capitalize;
+        @include mediaQuery($md) {
+          font-size: $minSize - 0.15;
+        }
+        @include mediaQuery($sm) {
+          font-size: $minSize - 0.25;
+        }
       }
       p {
         margin-left: 5px;
@@ -15,6 +29,12 @@
         font-weight: 500;
         transition: 0.4s all;
         text-transform: capitalize;
+        @include mediaQuery($md) {
+          font-size: $minSize - 0.15;
+        }
+        @include mediaQuery($sm) {
+          font-size: $minSize - 0.25;
+        }
         &:hover {
           color: $grey !important;
         }
@@ -26,9 +46,22 @@
       font-weight: 400;
       text-transform: uppercase;
       font-size: $large + 0.2;
+      @include mediaQuery($md) {
+        font-size: $large;
+      }
+      @include mediaQuery($sm) {
+        font-size: $large - 0.25;
+      }
     }
   }
   &_section {
+    @include mediaQuery($md) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
     &_title {
       font-size: $minSize;
     }
@@ -37,20 +70,73 @@
       text-transform: capitalize;
       font-size: $minSize;
       font-weight: 500;
+      @include mediaQuery($md) {
+        font-size: $minSize - 0.15;
+      }
+      @include mediaQuery($sm) {
+        width: 100%;
+        font-size: $minSize - 0.15;
+      }
     }
+
     input {
       width: 30%;
       margin-bottom: 10px;
       display: block;
+      @include mediaQuery($xl) {
+        width: 40%;
+      }
+      @include mediaQuery($lg) {
+        width: 70%;
+      }
+      @include mediaQuery($md) {
+        width: 100%;
+      }
     }
     button {
       font-size: $minSize;
       font-weight: 700;
+      @include mediaQuery($md) {
+        font-size: $minSize - 0.15;
+      }
+      @include mediaQuery($sm) {
+        width: 100%;
+        font-size: $minSize - 0.25;
+      }
     }
   }
   .error_msg {
     margin-bottom: 15px;
     font-size: $minSize;
     color: $red;
+    @include mediaQuery($md) {
+      font-size: $minSize - 0.15;
+    }
+    @include mediaQuery($sm) {
+      font-size: $minSize - 0.25;
+    }
+  }
+  &_register {
+    margin-top: 1rem;
+    p {
+      text-transform: capitalize;
+      @include mediaQuery($md) {
+        font-size: $minSize - 0.15;
+      }
+      @include mediaQuery($sm) {
+        width: 100%;
+        font-size: $minSize - 0.15;
+      }
+    }
+    a {
+      color: blue !important;
+      @include mediaQuery($md) {
+        font-size: $minSize - 0.15;
+      }
+      @include mediaQuery($sm) {
+        width: 100%;
+        font-size: $minSize - 0.15;
+      }
+    }
   }
 }

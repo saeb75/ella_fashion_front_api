@@ -74,7 +74,7 @@ const SignUpForm = () => {
           {ErrorMessage({ error: errors.email })}
           <label>password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             ref={register({ required: true })}
             disabled={auth.loading}
@@ -83,7 +83,11 @@ const SignUpForm = () => {
           <button type="submit">
             {auth.loading ? "loading..." : "create an account"}
           </button>
-          <NavLink to="/login">I have an account.login</NavLink>
+          <div className="sign_up_form_register">
+            <p>
+              I have an account. <NavLink to="/login">login</NavLink>
+            </p>
+          </div>
         </form>
         <EllaModal
           size="sm"
