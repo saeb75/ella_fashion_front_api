@@ -13,7 +13,7 @@ const InstagramGallery = () => {
         <Row className="mt-5">
           {data.map((item, index) => {
             return (
-              <Col lg="3" md="3" className="mb-4" key={index}>
+              <Col lg="3" md="3" sm="6" xs="6" className="mb-4" key={index}>
                 <Card>
                   <Item
                     original={item.img}
