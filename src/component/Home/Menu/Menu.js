@@ -100,7 +100,13 @@ const Menu = () => {
                   />
                 );
               })}
- */}
+ */}{" "}
+              <NavLink className="nav__item  nav__item__mobile" to="/">
+                <li>Home</li>
+              </NavLink>
+              <NavLink className="nav__item  nav__item__pc" to="/">
+                <li>Home</li>
+              </NavLink>
               {category.categories.length > 0 &&
                 category.categories.map((item, index) => {
                   return (
@@ -124,7 +130,6 @@ const Menu = () => {
                     />
                   );
                 })}
-
               {/*    <NavItemComponent title="New In" anime={<CategoryList />} first />
               <NavItemComponent
                 title="Bulk Editor"
