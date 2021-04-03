@@ -19,7 +19,7 @@ const NewCollection = ({ data }) => {
 
   return (
     <Container className="new_collection py-5">
-      {/*   {bannerData.length > 0 &&
+      {bannerData.length > 0 &&
         bannerData.map((item) => {
           return (
             <Row>
@@ -48,7 +48,7 @@ const NewCollection = ({ data }) => {
               </Col>
             </Row>
           );
-        })} */}
+        })}
     </Container>
   );
 };
