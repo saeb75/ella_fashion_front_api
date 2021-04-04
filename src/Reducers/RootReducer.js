@@ -5,6 +5,7 @@ import { cartReducer } from "./cartReducer";
 import { categoryReducer } from "./categoryReducer";
 import { productReducer } from "./productReducer";
 import { sliderReducer } from "./sliderReducer";
+import { overlayReducer } from "./overlayReducer";
 
 export let rootReducer = combineReducers({
   auth: authReducer,
@@ -13,4 +14,5 @@ export let rootReducer = combineReducers({
   banner: bannerReducer,
   product: productReducer,
   cart: cartReducer,
+  overlay: overlayReducer,
 });

@@ -30,6 +30,7 @@ import {
   getBestSellingProducts,
   getNewProducts,
 } from "../../Actions/productAction";
+import { CLOSE_OVERLAY } from "../../Actions/actionType";
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,13 +42,20 @@ const Home = () => {
   }, []);
   const category = useSelector((state) => state.category);
   const slider = useSelector((state) => state.slider);
+  const overlay = useSelector((state) => state.overlay);
   const product = useSelector((state) => state.product);
   if (category.loading || slider.loading) {
     return <Loading />;
   }
-
+  const handleCloseOverlay = () => {
+    dispatch({ type: CLOSE_OVERLAY });
+  };
   return (
     <>
+      <div
+        className={`overlay ${overlay.open && "active"}`}
+        onClick={handleCloseOverlay}
+      ></div>
       <Container fluid className="mainHeader p-0 m-0">
         <Header />
         <Menu />

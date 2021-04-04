@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Nav } from "react-bootstrap";
-
+import { OPEN_OVERLAY, CLOSE_OVERLAY } from "../../../Actions/actionType";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -30,6 +30,7 @@ const Menu = () => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.category);
 
+  const overlay = useSelector((state) => state.overlay);
   useEffect(() => {
     const onScroll = (e) => {
       setScrollTop(e.target.documentElement.scrollTop);
@@ -43,7 +44,19 @@ const Menu = () => {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
-
+  useEffect(() => {
+    if (!overlay.open) {
+      setHamburger(false);
+    }
+  }, [overlay.open]);
+  const handleOpenHamburger = () => {
+    setHamburger(true);
+    dispatch({ type: OPEN_OVERLAY });
+  };
+  const handleCloseHamburger = () => {
+    setHamburger(false);
+    dispatch({ type: CLOSE_OVERLAY });
+  };
   return (
     <>
       <Container
@@ -55,7 +68,7 @@ const Menu = () => {
           <div className="menu">
             <div className="menu_hamburger">
               <GiHamburgerMenu
-                onClick={() => setHamburger(true)}
+                onClick={handleOpenHamburger}
                 style={{ fontSize: 25, marginRight: 10, cursor: "pointer" }}
               />
               <img src={logo} width="50" />
@@ -68,7 +81,7 @@ const Menu = () => {
               <li className="closeHamburger">
                 <span>
                   <AiOutlineClose
-                    onClick={() => setHamburger(false)}
+                    onClick={handleCloseHamburger}
                     style={{ fontSize: "1.5rem", cursor: "pointer" }}
                   />
                 </span>
@@ -177,6 +190,12 @@ const Menu = () => {
 
 const DropDownItem = ({ title, items, key, slug }) => {
   const [open, setOpen] = useState(false);
+  const overlay = useSelector((state) => state.overlay);
+  useEffect(() => {
+    if (!overlay.open) {
+      setOpen(false);
+    }
+  }, [overlay.open]);
   return (
     <>
       <li
@@ -236,6 +255,12 @@ const NavItemComponent = ({ title, first, items, anime, close, slug }) => {
   useEffect(() => {
     setOpen(false);
   }, []);
+  const overlay = useSelector((state) => state.overlay);
+  useEffect(() => {
+    if (!overlay.open) {
+      setOpen(false);
+    }
+  }, [overlay.open]);
   let className = first
     ? "nav__item  nav__item__pc "
     : " nav__item__pc nav__item__drop__item ";
