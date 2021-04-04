@@ -19,8 +19,7 @@ const ProductCard = ({ item }) => {
       setState(listColor[0].code);
     }
   }, [item]);
-  console.log();
-
+  console.log(item);
   return (
     <div className="list_slider_card">
       <div className="list_slider_image">

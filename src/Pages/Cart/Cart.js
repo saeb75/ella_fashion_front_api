@@ -11,7 +11,7 @@ const Cart = () => {
       <Header />
       <Menu />
       <CartBody />
-      <ListSliderContainer title="Related Products" viewAll={true} />
+      {/*   <ListSliderContainer title="Related Products" viewAll={true} /> */}
       <NewsSignup />
       <Footer />
     </>

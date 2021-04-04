@@ -23,7 +23,7 @@ const SingleProduct = () => {
       <NewCollection data={singleProductBanner} />
       <BigBanner data={singleProductBigBanner} />
       <CustumerReview />
-      <ListSliderContainer title="Related Products" />
+      {/*  <ListSliderContainer title="Related Products" /> */}
       <ContactSection />
       <NewsSignup />
       <Footer />

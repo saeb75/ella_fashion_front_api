@@ -255,7 +255,7 @@ const FilterProduct = ({ SetOpen }) => {
       </ul>
       <div className="filter_slider">
         <li>featured products</li>
-        <ListSlider data={data} slide={1} navigation={true} oneSlide={true} />
+        {/* <ListSlider data={data} slide={1} navigation={true} oneSlide={true} /> */}
       </div>
     </div>
   );

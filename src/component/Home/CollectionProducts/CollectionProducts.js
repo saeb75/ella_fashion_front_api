@@ -9,34 +9,8 @@ import img5 from "../../../assents/cardImage/4.jpg";
 import img11 from "../../../assents/cardImage/19.webp";
 import img12 from "../../../assents/cardImage/17.webp";
 import ListSlider from "../ListSlider/ListSlider";
-let data = [
-  {
-    img: img1,
-    brand: "marc",
-    name: "abore et dolore magna aliqua",
-    images: [img2, img3],
-    stars: 5,
-    price: 269.0,
-  },
-  {
-    img: img4,
-    brand: "g-star",
-    name: "laboris nisi ut aliquip exea",
-    images: [img4, img11],
-    stars: 5,
-    price: 589.0,
-  },
-  {
-    img: img5,
-    brand: "chanel",
-    name: "olore eu fugiat nulla pariatur",
-    stars: 5,
-    images: [img5, img12],
-    price: 569.0,
-  },
-];
 
-const CollectionProducts = () => {
+const CollectionProducts = ({ data }) => {
   return (
     <Container className="collection_products">
       <Row>

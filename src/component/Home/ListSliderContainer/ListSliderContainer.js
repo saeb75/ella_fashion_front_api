@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import ListSlider from "../ListSlider/ListSlider";
-import { data } from "../../../Data/SliderData";
-const ListSliderContainer = ({ title, viewAll }) => {
+
+const ListSliderContainer = ({ title, viewAll, data }) => {
   return (
     <Container fluid>
       <Container className="list_slider">

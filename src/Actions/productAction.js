@@ -9,6 +9,12 @@ import {
   GET_SINGLE_PRODUCT_DETAILS_REQUEST,
   GET_SINGLE_PRODUCT_DETAILS_SUCCESS,
   GET_SINGLE_PRODUCT_DETAILS_FAILURE,
+  GET_BEST_SELLING_PRODUCTS_REQUEST,
+  GET_BEST_SELLING_PRODUCTS_SUCCESS,
+  GET_BEST_SELLING_PRODUCTS_FAILURE,
+  GET_NEW_PRODUCTS_REQUEST,
+  GET_NEW_PRODUCTS_SUCCESS,
+  GET_NEW_PRODUCTS_FAILURE,
 } from "./actionType";
 
 export const getProducts = (slug, color, size, price, brand) => (dispatch) => {
@@ -44,4 +50,29 @@ export const getSingleProduct = (slug) => (dispatch) => {
       })
     )
     .catch((err) => dispatch({ type: GET_SINGLE_PRODUCT_DETAILS_FAILURE }));
+};
+export const getBestSellingProducts = (sort, order) => (dispatch) => {
+  dispatch({ type: GET_BEST_SELLING_PRODUCTS_REQUEST });
+  ApiFunc()
+    .get(`product/sort/get?sort=${sort}&order=${order}`)
+    .then((res) =>
+      dispatch({
+        type: GET_BEST_SELLING_PRODUCTS_SUCCESS,
+        payload: res.data.products,
+      })
+    )
+    .catch((err) => dispatch({ type: GET_BEST_SELLING_PRODUCTS_FAILURE }));
+};
+
+export const getNewProducts = (sort, order) => (dispatch) => {
+  dispatch({ type: GET_NEW_PRODUCTS_REQUEST });
+  ApiFunc()
+    .get(`product/sort/get`)
+    .then((res) =>
+      dispatch({
+        type: GET_NEW_PRODUCTS_SUCCESS,
+        payload: res.data.products,
+      })
+    )
+    .catch((err) => dispatch({ type: GET_NEW_PRODUCTS_FAILURE }));
 };

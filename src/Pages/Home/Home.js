@@ -26,18 +26,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMainSlider } from "../../Actions/sliderAction";
 import { getCategories } from "../../Actions/categoryAction";
 import Loading from "../../component/General/Loading/Loading";
+import {
+  getBestSellingProducts,
+  getNewProducts,
+} from "../../Actions/productAction";
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     scroll.scrollToTop();
     dispatch(getMainSlider());
     dispatch(getCategories());
+    dispatch(getBestSellingProducts("sold", "desc"));
+    dispatch(getNewProducts());
   }, []);
   const category = useSelector((state) => state.category);
   const slider = useSelector((state) => state.slider);
+  const product = useSelector((state) => state.product);
   if (category.loading || slider.loading) {
     return <Loading />;
   }
+
   return (
     <>
       <Container fluid className="mainHeader p-0 m-0">
@@ -47,11 +55,15 @@ const Home = () => {
       <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
         <MainSlider />
         <SmallBanner />
-        <ListSliderContainer title="best selling" viewAll={true} />
+        <ListSliderContainer
+          title="best selling"
+          viewAll={true}
+          data={product.bestSelling}
+        />
         <BigBanner data={homeBigBanner} />
         <ExploreSection />
         <FeaturedProduct />
-        <CollectionProducts />
+        <CollectionProducts data={product.newProducts} />
         <ContactSection />
         <NewCollection data={homeBanner} />
         <AboutUs data={about} />
