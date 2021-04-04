@@ -33,7 +33,7 @@ const CategoryList = ({ items, categoryImg, category }) => {
             </Col>
             <Col md="5">
               <div className="all_category_products">
-                <Navlist to="/" image={categoryImg}>
+                <Navlist to={`/category/${category}`} image={categoryImg}>
                   {category}
                 </Navlist>
               </div>

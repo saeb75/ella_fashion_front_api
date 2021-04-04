@@ -270,7 +270,7 @@ const NavItemComponent = ({ title, first, items, anime, close, slug }) => {
                 <IoIosArrowBack style={{ marginRight: 30 }} />
                 {title}
               </li>
-              <DropDownItem slug={slug} title={`all ${title}`} />
+              <DropDownItem slug={title} title={`all ${title}`} />
               {items}
             </motion.ul>
           )}
