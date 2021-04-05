@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../component/Home/Header/Header";
 import Menu from "../../component/Home/Menu/Menu";
 import ProductInfo from "../../component/SingleProduct/ProductInfo/ProductInfo";
@@ -13,9 +13,15 @@ import CustumerReview from "../../component/SingleProduct/CustumerReview/Custume
 import ContactSection from "../../component/Home/ContactSection/ContactSection";
 import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import Footer from "../../component/Home/Footer/Footer";
+import Overlay from "../../component/General/Overlay/Overlay";
+import { animateScroll as scroll } from "react-scroll";
 const SingleProduct = () => {
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
   return (
     <div>
+      <Overlay />
       <Header />
       <Menu />
       <ProductInfo />

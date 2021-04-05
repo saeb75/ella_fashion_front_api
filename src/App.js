@@ -17,6 +17,7 @@ import { loginControl } from "./Actions/authAction";
 import Cart from "./Pages/Cart/Cart";
 import { getCartItems, updatedCart } from "./Actions/cartAction";
 import { getCategories } from "./Actions/categoryAction";
+import { CLOSE_OVERLAY } from "./Actions/actionType";
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -33,7 +34,10 @@ function App() {
     dispatch(getCategories());
   }, [auth.authenticated]);
   let location = useLocation();
-
+  console.log(location);
+  useEffect(() => {
+    dispatch({ type: CLOSE_OVERLAY });
+  }, [location.pathname]);
   return (
     <>
       <ThemeProvider theme={theme}>

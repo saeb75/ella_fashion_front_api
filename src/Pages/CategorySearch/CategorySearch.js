@@ -12,19 +12,23 @@ import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { getProducDetails, getProducts } from "../../Actions/productAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { animateScroll as scroll } from "react-scroll";
+import { CLOSE_OVERLAY } from "../../Actions/actionType";
+import Overlay from "../../component/General/Overlay/Overlay";
 const CategorySearch = () => {
   const [open, setOpen] = useState(false);
   const param = useParams();
   const dispatch = useDispatch();
-
+  const overlay = useSelector((state) => state.overlay);
   useEffect(() => {
     dispatch(getProducDetails(param.slug));
     scroll.scrollToTop();
   }, []);
+
   return (
     <>
+      <Overlay />
       <Container fluid className="mainHeader p-0 m-0">
         <Header />
         <Menu />

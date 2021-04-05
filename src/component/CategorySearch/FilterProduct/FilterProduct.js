@@ -10,6 +10,7 @@ import useUnique from "../../../helper/useUnique";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { getProducts } from "../../../Actions/productAction";
 import { prices } from "../../../helper/FixPrice";
+import { CLOSE_OVERLAY } from "../../../Actions/actionType";
 const queryString = require("query-string");
 const FilterProduct = ({ SetOpen }) => {
   const location = useLocation();
@@ -211,13 +212,13 @@ const FilterProduct = ({ SetOpen }) => {
     setPrice(Url.min_price ? [Url.min_price, Url.max_price] : []);
     setBrand(brandList);
   }, []);
-
+  const handleCloseFilter = () => {
+    SetOpen(false);
+    dispatch({ type: CLOSE_OVERLAY });
+  };
   return (
     <div className="filter_products">
-      <div
-        className="filter_products_close  mb-5"
-        onClick={() => SetOpen(false)}
-      >
+      <div className="filter_products_close  mb-5" onClick={handleCloseFilter}>
         <AiOutlineClose />
       </div>
       <ul className="filter_products_list">

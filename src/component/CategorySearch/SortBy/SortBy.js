@@ -2,8 +2,15 @@ import React from "react";
 import { Container, Form } from "react-bootstrap";
 import { GrSplit, GrSplits } from "react-icons/gr";
 import { GoSettings } from "react-icons/go";
+import { useDispatch } from "react-redux";
+import { OPEN_OVERLAY } from "../../../Actions/actionType";
 
 const SortBy = ({ setOpen }) => {
+  const dispatch = useDispatch();
+  const handleOpenFilter = () => {
+    setOpen(true);
+    dispatch({ type: OPEN_OVERLAY });
+  };
   return (
     <Container className="category_sort_by">
       <div className="category_sort_by_title">
@@ -50,7 +57,7 @@ const SortBy = ({ setOpen }) => {
             </div>
           </div>
         </div>
-        <div className="filterToggle" onClick={() => setOpen(true)}>
+        <div className="filterToggle" onClick={handleOpenFilter}>
           <GoSettings />
         </div>
       </div>
