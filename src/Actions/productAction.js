@@ -17,10 +17,20 @@ import {
   GET_NEW_PRODUCTS_FAILURE,
 } from "./actionType";
 
-export const getProducts = (slug, color, size, price, brand) => (dispatch) => {
+export const getProducts = (slug, color, size, price, brand, sort, order) => (
+  dispatch
+) => {
   dispatch({ type: GET_PRODUCTS_REQUEST });
   ApiFunc()
-    .post("product/by/categories", { slug, color, size, price, brand })
+    .post("product/by/categories", {
+      slug,
+      color,
+      size,
+      price,
+      brand,
+      sort,
+      order,
+    })
     .then((res) =>
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: res.data.products })
     )

@@ -20,7 +20,8 @@ const FilterProduct = ({ SetOpen }) => {
   const [size, setSize] = useState([]);
   const [price, setPrice] = useState([]);
   const [brand, setBrand] = useState([]);
-
+  let sort = "";
+  let order = "";
   const product = useSelector((state) => state.product);
   const { slug } = useParams();
   let { colors, sizes, brands } = useUnique(product, "color");
@@ -30,8 +31,10 @@ const FilterProduct = ({ SetOpen }) => {
   const dispatch = useDispatch();
   // handle color size
   const handleColor = (item) => {
+    sort = "";
+    order = "";
     setColor(item.enName);
-    dispatch(getProducts(slug, item.enName, size, price, brand));
+
     let filterObj = {};
     filterObj.color = item.enName;
 
@@ -45,15 +48,24 @@ const FilterProduct = ({ SetOpen }) => {
     if (brand) {
       filterObj.brand = brand;
     }
+    if (Url.sort) {
+      filterObj.sort = Url.sort;
+      filterObj.order = Url.order;
+      sort = Url.sort;
+      order = Url.order;
+    }
+    dispatch(getProducts(slug, item.enName, size, price, brand, sort, order));
     const stringified = queryString.stringify(filterObj);
     history.push(`${location.pathname}?${stringified}`);
   };
 
   // handle brand size
   const handleSize = (e, item) => {
+    sort = "";
+    order = "";
     if (e.target.checked) {
       setSize([...size, item]);
-      dispatch(getProducts(slug, color, [...size, item], price, brand));
+
       let filterObj = {};
       filterObj.size = [...size, item];
       if (color) {
@@ -66,6 +78,15 @@ const FilterProduct = ({ SetOpen }) => {
       if (brand) {
         filterObj.brand = brand;
       }
+      if (Url.sort) {
+        filterObj.sort = Url.sort;
+        filterObj.order = Url.order;
+        sort = Url.sort;
+        order = Url.order;
+      }
+      dispatch(
+        getProducts(slug, color, [...size, item], price, brand, sort, order)
+      );
       const stringified = queryString.stringify(filterObj);
       console.log(stringified);
       history.push(`${location.pathname}?${stringified}`);
@@ -85,7 +106,15 @@ const FilterProduct = ({ SetOpen }) => {
         filterObj.max_price = price[1];
         filterObj.min_price = price[0];
       }
-      dispatch(getProducts(slug, color, [...newList], price, brand));
+      if (Url.sort) {
+        filterObj.sort = Url.sort;
+        filterObj.order = Url.order;
+        sort = Url.sort;
+        order = Url.order;
+      }
+      dispatch(
+        getProducts(slug, color, [...newList], price, brand, sort, order)
+      );
       const stringified = queryString.stringify(filterObj);
       console.log(stringified);
       history.push(`${location.pathname}?${stringified}`);
@@ -93,9 +122,11 @@ const FilterProduct = ({ SetOpen }) => {
   };
   // handle brand filter
   const HandleBrand = (e, item) => {
+    sort = "";
+    order = "";
     if (e.target.checked) {
       setBrand([...brand, item]);
-      dispatch(getProducts(slug, color, size, price, [...brand, item]));
+
       let filterObj = {};
       filterObj.brand = [...brand, item];
       if (size) {
@@ -105,10 +136,19 @@ const FilterProduct = ({ SetOpen }) => {
       if (color) {
         filterObj.color = color;
       }
-      if (price > 0) {
+      if (price.length > 0) {
         filterObj.max_price = price[1];
         filterObj.min_price = price[0];
       }
+      if (Url.sort) {
+        filterObj.sort = Url.sort;
+        filterObj.order = Url.order;
+        sort = Url.sort;
+        order = Url.order;
+      }
+      dispatch(
+        getProducts(slug, color, size, price, [...brand, item], sort, order)
+      );
       const stringified = queryString.stringify(filterObj);
 
       history.push(`${location.pathname}?${stringified}`);
@@ -124,11 +164,19 @@ const FilterProduct = ({ SetOpen }) => {
       if (size) {
         filterObj.size = size;
       }
-      if (price > 0) {
+      if (price.length > 0) {
         filterObj.max_price = price[1];
         filterObj.min_price = price[0];
       }
-      dispatch(getProducts(slug, color, size, price, [...newList]));
+      if (Url.sort) {
+        filterObj.sort = Url.sort;
+        filterObj.order = Url.order;
+        sort = Url.sort;
+        order = Url.order;
+      }
+      dispatch(
+        getProducts(slug, color, size, price, [...newList], sort, order)
+      );
       const stringified = queryString.stringify(filterObj);
       console.log(stringified);
       history.push(`${location.pathname}?${stringified}`);
@@ -136,10 +184,18 @@ const FilterProduct = ({ SetOpen }) => {
   };
   // handle price filter
   const handlePrice = (e, item) => {
+    sort = "";
+    order = "";
     if (item.array.length > 0) {
       setPrice(item.array);
       let filterObj = {};
-      dispatch(getProducts(slug, color, size, item.array, brand));
+      if (Url.sort) {
+        filterObj.sort = Url.sort;
+        filterObj.order = Url.order;
+        sort = Url.sort;
+        order = Url.order;
+      }
+      dispatch(getProducts(slug, color, size, item.array, brand, sort, order));
       if (size) {
         filterObj.size = size;
       }
@@ -153,6 +209,7 @@ const FilterProduct = ({ SetOpen }) => {
         filterObj.min_price = item.array[0];
         filterObj.max_price = item.array[1];
       }
+
       const stringified = queryString.stringify(filterObj);
 
       history.push(`${location.pathname}?${stringified}`);
@@ -160,12 +217,21 @@ const FilterProduct = ({ SetOpen }) => {
       let filterObj = {};
       setPrice([]);
 
-      dispatch(getProducts(slug, color, size, [], brand));
+      if (Url.sort) {
+        filterObj.sort = Url.sort;
+        filterObj.order = Url.order;
+        sort = Url.sort;
+        order = Url.order;
+      }
+      dispatch(getProducts(slug, color, size, [], brand, sort, order));
       if (size) {
         filterObj.size = size;
       }
       if (color) {
         filterObj.color = color;
+      }
+      if (brand) {
+        filterObj.brand = brand;
       }
 
       const stringified = queryString.stringify(filterObj);
@@ -196,14 +262,21 @@ const FilterProduct = ({ SetOpen }) => {
       sizeList = [];
       sizeList.push(Url.size);
     }
-
+    sort = "";
+    order = "";
+    if (Url.sort) {
+      sort = Url.sort;
+      order = Url.order;
+    }
     dispatch(
       getProducts(
         slug,
         Url.color ? Url.color : "",
         sizeList,
         Url.min_price ? [Url.min_price, Url.max_price] : [],
-        brandList
+        brandList,
+        sort,
+        order
       )
     );
 

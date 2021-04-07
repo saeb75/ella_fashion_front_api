@@ -36,7 +36,7 @@ const CategorySearch = () => {
       <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
         <Banner />
         <JumpTo />
-        <SortBy setOpen={setOpen} />
+
         <FilterAndProducts open={open} setOpen={setOpen} />
         <NewsSignup />
         <Footer />

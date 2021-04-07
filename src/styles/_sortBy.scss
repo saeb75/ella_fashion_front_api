@@ -29,7 +29,6 @@
     justify-content: space-between;
     align-items: center;
     @include mediaQuery($xl) {
-      flex-direction: row-reverse;
       background-color: $lightGrey;
       padding: 0 10px;
     }
@@ -66,14 +65,18 @@
   }
   &_select {
     display: flex;
+    width: 100%;
     align-items: center;
+
     div {
+      justify-content: flex-end;
       margin-left: 20px;
       display: flex;
       align-items: center;
       &:first-child {
         select {
-          width: 80px;
+          width: 200px;
+          text-transform: capitalize;
         }
       }
       select {
