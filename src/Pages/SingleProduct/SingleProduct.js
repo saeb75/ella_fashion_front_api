@@ -15,6 +15,8 @@ import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import Footer from "../../component/Home/Footer/Footer";
 import Overlay from "../../component/General/Overlay/Overlay";
 import { animateScroll as scroll } from "react-scroll";
+import { motion } from "framer-motion";
+import { fade } from "../../component/animations/animations";
 const SingleProduct = () => {
   useEffect(() => {
     scroll.scrollToTop();
@@ -24,15 +26,17 @@ const SingleProduct = () => {
       <Overlay />
       <Header />
       <Menu />
-      <ProductInfo />
-      <AboutUs data={productInfo} />
-      <NewCollection data={singleProductBanner} />
-      <BigBanner data={singleProductBigBanner} />
-      <CustumerReview />
-      {/*  <ListSliderContainer title="Related Products" /> */}
-      <ContactSection />
-      <NewsSignup />
-      <Footer />
+      <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
+        <ProductInfo />
+        <AboutUs data={productInfo} />
+        <NewCollection data={singleProductBanner} />
+        <BigBanner data={singleProductBigBanner} />
+        <CustumerReview />
+        {/*  <ListSliderContainer title="Related Products" /> */}
+        <ContactSection />
+        <NewsSignup />
+        <Footer />
+      </motion.div>
     </div>
   );
 };

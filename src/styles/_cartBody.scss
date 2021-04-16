@@ -156,6 +156,23 @@
         width: 70%;
       }
     }
+    .quant {
+      margin: 0px 5px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .ince_quantity,
+    .desc_quantity {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: $grey;
+    }
   }
   &_total {
     flex: 1.5;

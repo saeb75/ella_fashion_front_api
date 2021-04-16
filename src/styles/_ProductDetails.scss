@@ -253,7 +253,13 @@
       background-color: $darkBlue;
       color: white;
       text-transform: uppercase;
-
+      cursor: pointer;
+      @include mediaQuery($sm) {
+        font-size: $minSize - 0.2;
+      }
+      .disable {
+        opacity: 0.6;
+      }
       &:hover {
         background-color: white;
         color: $darkBlue;

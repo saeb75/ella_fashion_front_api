@@ -98,8 +98,7 @@ export const removeFromCart = (color, size, id) => (dispatch) => {
       .catch((err) => console.log(err));
   } else {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    console.log(cart);
-    console.log(color, size, id);
+
     let updatedCart = delete cart[`${id + "&" + size + "&" + color._id}`];
 
     localStorage.setItem("cart", JSON.stringify(cart));

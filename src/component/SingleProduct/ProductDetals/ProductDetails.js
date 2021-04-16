@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import star from "../../../assents/star.png";
 import fire from "../../../assents/fire.png";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -16,6 +16,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
     size: "",
     color: "",
   });
+  const history = useHistory();
   const dispatch = useDispatch();
   let { name, price, description, productDetails } = product;
   let colorList = [];
@@ -62,6 +63,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
   let addProductToCart = () => {
     if (cartItems.size && cartItems.color) {
       dispatch(addToCart(product, cartItems.size, cartItems.color));
+      history.push("/cart");
     }
   };
 
@@ -144,11 +146,7 @@ const ProductDetails = ({ data, changeData, image, product }) => {
                       {item}
                     </div>
                   ) : (
-                    <div
-                      className={`size_box  unAvailable `}
-                      key={index}
-                      onClick={() => setCartItems({ ...cartItems, size: item })}
-                    >
+                    <div className={`size_box  unAvailable `} key={index}>
                       {item}
                     </div>
                   )}
@@ -159,17 +157,13 @@ const ProductDetails = ({ data, changeData, image, product }) => {
       </div>
       <div className="product_details_addToCart my-3">
         <input type="number" value="1" />
-        {cartItems.product || cartItems.color || cartItems.size ? (
+        {cartItems.size ? (
           <button className="add_to_cart mx-2" onClick={addProductToCart}>
             add to cart
           </button>
         ) : (
-          <button
-            className="add_to_cart mx-2"
-            onClick={addProductToCart}
-            disabled={true}
-          >
-            add to cart
+          <button className="add_to_cart disable mx-2">
+            please choose a size
           </button>
         )}
 

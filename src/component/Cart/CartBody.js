@@ -8,7 +8,7 @@ import cart1 from "../../assents/cart1.jpg";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-import { removeFromCart } from "../../Actions/cartAction";
+import { addToCart, removeFromCart } from "../../Actions/cartAction";
 const CartBody = () => {
   const [countries, setCountries] = useState([{ country: "" }]);
   const [cities, setCities] = useState([]);
@@ -55,28 +55,22 @@ const CartBody = () => {
 };
 
 export default CartBody;
-let data = [
-  {
-    img: img13,
-    brand: "marc",
-    name: "abore et dolore magna aliqua",
-    stars: 5,
-    price: 269.0,
-    new: true,
-    percent: 20,
-  },
-];
-let fetured = {
-  img: img5,
-  brand: "burberry",
-  images: [img5, img2],
-  name: " aliqua. Ut enim ad minim veniam",
-  stars: 5,
-  price: 393.0,
-};
+
 const CartTable = ({ removeItem }) => {
   const cart = useSelector((state) => state.cart);
   let { cartItems } = cart;
+  const dispatch = useDispatch();
+
+  const increaseProduct = (product, size, color) => {
+    dispatch(addToCart(product, size, color, 1));
+  };
+  const descProduct = (product, size, color) => {
+    if (product.qty == 1) {
+      removeItem(color, size, product._id);
+    } else {
+      dispatch(addToCart(product, size, color, -1));
+    }
+  };
   return (
     <>
       <div className="cart_table ">
@@ -111,7 +105,31 @@ const CartTable = ({ removeItem }) => {
               $ {cartItems[key].price}
             </div>
             <div className="cart_table_details_quantity">
-              <input type="number" value={cartItems[key].qty} />
+              <span
+                className="desc_quantity"
+                onClick={() =>
+                  descProduct(
+                    cartItems[key],
+                    cartItems[key].size,
+                    cartItems[key].color
+                  )
+                }
+              >
+                -
+              </span>{" "}
+              <span className="quant">{cartItems[key].qty}</span>
+              <span
+                className="ince_quantity"
+                onClick={() =>
+                  increaseProduct(
+                    cartItems[key],
+                    cartItems[key].size,
+                    cartItems[key].color
+                  )
+                }
+              >
+                +
+              </span>
             </div>
             <div className="cart_table_details_total">
               $ {cartItems[key].price * cartItems[key].qty}

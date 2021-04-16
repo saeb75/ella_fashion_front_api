@@ -35,7 +35,7 @@ const CategorySearch = () => {
       </Container>
       <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
         <Banner />
-        <JumpTo />
+        {/*  <JumpTo /> */}
 
         <FilterAndProducts open={open} setOpen={setOpen} />
         <NewsSignup />

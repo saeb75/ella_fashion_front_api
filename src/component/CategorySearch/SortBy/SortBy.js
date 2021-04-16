@@ -68,7 +68,7 @@ const SortBy = ({ setOpen }) => {
     history.push(`${location.pathname}?${stringified}`);
   };
   return (
-    <Container className="category_sort_by">
+    <Container className="category_sort_by mt-5">
       <div className="category_sort_by_container py-3">
         {/* <div className="grid_view">
           <p>view as </p>
@@ -106,7 +106,7 @@ const SortBy = ({ setOpen }) => {
                 onChange={handleSort}
                 value={`${Url.sort} ${Url.order}`}
               >
-                <option value="created desc"></option>
+                <option value="createdAt desc"></option>
                 <option value="price desc">descresing by price</option>
                 <option value="price asc">increasing by price</option>
               </Form.Control>

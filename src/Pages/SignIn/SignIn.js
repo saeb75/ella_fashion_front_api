@@ -8,6 +8,8 @@ import Menu from "../../component/Home/Menu/Menu";
 import NewsSignup from "../../component/Home/NewsSignup/NewsSignup";
 import SignInForm from "../../component/SignIn/SignInForm";
 import { animateScroll as scroll } from "react-scroll";
+import { motion } from "framer-motion";
+import { fade } from "../../component/animations/animations";
 const SignIn = () => {
   useEffect(() => {
     scroll.scrollToTop();
@@ -16,10 +18,12 @@ const SignIn = () => {
     <div>
       <Overlay />
       <Header />
-      <Menu />
-      <SignInForm />
-      <NewsSignup />
-      <Footer />
+      <Menu />{" "}
+      <motion.div variants={fade} initial="hidden" animate="show" exit="exit">
+        <SignInForm />
+        <NewsSignup />
+        <Footer />
+      </motion.div>
     </div>
   );
 };
