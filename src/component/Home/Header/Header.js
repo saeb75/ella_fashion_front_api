@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { GButton, theme, Line } from "../../../Global";
-import logo from "../../../assents/ella.png";
+import logo from "../../../assents/3.png";
 import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
@@ -12,7 +12,7 @@ const Header = () => {
       <Container>
         <header className="header flex flex-jc-sp">
           <div className="logo">
-            Saeb<span>FBD</span>
+            <img src={logo} />
           </div>
           <div className="flex">
             <div className="header__flash__button">

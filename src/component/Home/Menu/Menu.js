@@ -10,18 +10,13 @@ import {
   AiOutlineShopping,
   AiOutlineClose,
 } from "react-icons/ai";
-import TrendAnime from "./TrendAnime";
-import NewAnime from "./CategoryList";
-import BulkAnime from "./BulkAnime";
-import logo from "../../../assents/ella.png";
-import { data } from "../../../Data/data";
+import logo from "../../../assents/3.png";
 import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { toRight } from "../../animations/animations";
 import CartSection from "../CartSection/CartSection";
 import CategoryList from "./CategoryList";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../../Actions/categoryAction";
 const Menu = () => {
   const [hamburger, setHamburger] = useState(false);
   const [scrollTop, setScrollTop] = useState("");
@@ -113,7 +108,7 @@ const Menu = () => {
                   />
                 );
               })}
- */}{" "}
+ */}
               <NavLink className="nav__item  nav__item__mobile" to="/">
                 <li>Home</li>
               </NavLink>
